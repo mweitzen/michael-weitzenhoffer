@@ -2,6 +2,18 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/context": ["context/index"],
+      "@/context/*": ["context/*"],
+      "@/layouts/*": ["layouts/*"],
+      "@/partials/*": ["partials/*"],
+      "@/lib/*": ["lib/*"],
+      "@/styles/*": ["styles/*"],
+      "@/types": ["types/index"],
+      "@/types/*": ["types/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
