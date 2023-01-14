@@ -10,9 +10,9 @@ const tracks: IAudioTrack[] = [
 
 export default function RecordingsPage() {
   return (
-    <>
+    <div className="grid gap-8">
       <h1>Listen to Michael</h1>
       <AudioPlayer tracks={tracks} />
-    </>
+    </div>
   );
 }
