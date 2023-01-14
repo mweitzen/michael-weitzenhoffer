@@ -15,15 +15,16 @@ module.exports = {
         sans: ["var(--font-family-sans)", ...defaultTheme.fontFamily.sans],
       },
       backgroundColor: {
-        default: "var(--color-background)",
-        element: "var(--color-elements)",
+        default: "var(--color-dark-purple)",
+        element: "var(--color-dark-purple)",
       },
       colors: {
-        primary: {
-          main: "var(--color-primary-main)",
-          shadow: "var(--color-primary-shadow)",
-          light: "var(--color-primary-light)",
-        },
+        // primary: {
+        //   main: "var(--color-primary-main)",
+        //   shadow: "var(--color-primary-shadow)",
+        //   light: "var(--color-primary-light)",
+        // },
+        "dark-purple": "var(--color-dark-purple)",
         "neutral-light": "var(--color-neutral-light)",
       },
       textColor: {

@@ -1,5 +1,4 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { api } from "@/lib/api";
 
 const AuthShowcase: React.FC = () => {
   const { data: sessionData, status } = useSession();

@@ -10,8 +10,12 @@ const inter = Inter({
 
 const DefaultLayout: React.FC<WithChildren> = ({ children }) => {
   return (
-    <div className={`${inter.className} h-full bg-blue-200 font-sans`}>
-      {children}
+    <div
+      className={`${inter.className} h-full bg-gradient-to-tr from-black to-dark-purple font-sans text-white`}
+    >
+      <main className="flex h-full w-full flex-col items-center justify-center text-3xl font-thin">
+        {children}
+      </main>
     </div>
   );
 };

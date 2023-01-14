@@ -4,8 +4,7 @@
 
 @layer base {
   :root {
-    --color-background: hsl(0, 0%, 98%);
-    --color-elements: hsl(0, 0%, 100%);
+    --color-dark-purple: hsl(273, 100%, 4%);
 
     /* --color-primary-main: hsl(26, 100%, 55%);
       --color-primary-shadow: hsl(26, 85%, 81%);
@@ -16,13 +15,6 @@
     --color-text-default: hsl(270, 15%, 8%);
     --color-text-muted: hsl(219, 9%, 45%);
     --color-text-light: hsl(220, 14%, 75%);
-  }
-
-  .dark {
-    --color-background: hsl(207, 26%, 17%);
-    --color-elements: hsl(209, 23%, 22%);
-    --color-text-default: hsl(0, 0%, 100%);
-    --color-text-muted: hsl(220, 14%, 75%);
   }
 
   ::-webkit-scrollbar {
