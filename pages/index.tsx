@@ -3,12 +3,8 @@ import SEO from "@/components/seo";
 
 export default function Home() {
   return (
-    <>
-      <SEO title="Pianist" />
-      <main className="flex h-full w-full flex-col items-center justify-center">
-        <h1>Neutron</h1>
-        <AuthShowcase />
-      </main>
-    </>
+    <main className="flex h-full w-full flex-col items-center justify-center text-3xl font-thin">
+      <h1>Michael Weitzenhoffer</h1>
+    </main>
   );
 }
