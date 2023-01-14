@@ -27,9 +27,6 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   adapter: PrismaAdapter(prisma),
-  theme: {
-    colorScheme: "light",
-  },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       const allowedDomains = ["@weitzenhoffer.com"];
@@ -44,14 +41,14 @@ export const authOptions: NextAuthOptions = {
         return "/unauthorized";
       }
     },
-    // async jwt({ token, user }) {
-    //   if (user?.email === "mike@weitzenhoffer.com") {
-    //     token.userRole = "admin";
-    //   } else {
-    //     token.userROle = "guest";
-    //   }
-    //   return token;
-    // },
+    async jwt({ token, user }) {
+      if (user?.email === "mike@weitzenhoffer.com") {
+        token.userRole = "admin";
+      } else {
+        token.userROle = "guest";
+      }
+      return token;
+    },
     session: ({ session, user }) => ({
       ...session,
       user: {

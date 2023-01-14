@@ -4,31 +4,18 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 //
 import { useDisplayContext } from "@/context/display";
-
-const routes = [
-  {
-    label: "Home",
-    path: "/",
-  },
-  {
-    label: "Upcoming Events",
-    path: "/upcoming",
-  },
-  {
-    label: "Recordings",
-    path: "/recordings",
-  },
-  {
-    label: "Auth",
-    path: "/auth",
-  },
-];
+//
+import routes from "@/lib/routes";
 
 const PublicMenu = () => {
   const { showMenu, setShowMenu } = useDisplayContext();
   return (
     <Transition as={Fragment} show={showMenu}>
-      <Dialog as="div" className="relative z-20" onClose={setShowMenu}>
+      <Dialog
+        as="div"
+        className="relative z-20 text-white"
+        onClose={setShowMenu}
+      >
         <Transition.Child
           as={Fragment}
           enter="transition duration-700 ease-out"
@@ -39,8 +26,10 @@ const PublicMenu = () => {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black bg-opacity-10 backdrop-blur">
-            <div className="flex h-16 w-full items-center justify-between px-4 md:px-6">
-              <span />
+            <div className="absolute flex h-16 w-full items-center justify-between px-4 md:px-6">
+              <Link href="/" className="font-thin tracking-tighter">
+                MW
+              </Link>
 
               <button>
                 <svg
@@ -48,7 +37,7 @@ const PublicMenu = () => {
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1}
-                  stroke="white"
+                  stroke="currentColor"
                   className="h-6 w-6"
                 >
                   <path
@@ -70,19 +59,20 @@ const PublicMenu = () => {
           leaveFrom="scale-100"
           leaveTo="scale-0"
         >
-          <div className="fixed inset-0 grid transform place-content-center">
-            <Dialog.Panel>
-              <div className="grid gap-4 text-center text-white">
-                {routes.map((route, i) => (
-                  <Link
-                    key={i}
-                    href={route.path}
-                    onClick={() => setShowMenu(false)}
-                  >
-                    {route.label}
-                  </Link>
-                ))}
-              </div>
+          <div className="pointer-events-none fixed inset-0 grid transform place-content-center">
+            <Dialog.Panel
+              as="div"
+              className="pointer-events-auto grid gap-4 text-center text-white"
+            >
+              {routes.public.map((route, i) => (
+                <Link
+                  key={i}
+                  href={route.path}
+                  onClick={() => setShowMenu(false)}
+                >
+                  {route.name}
+                </Link>
+              ))}
             </Dialog.Panel>
           </div>
         </Transition.Child>
