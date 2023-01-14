@@ -30,6 +30,4 @@ const DisplayContextProvider: React.FC<WithChildren> = ({ children }) => {
 
 export default DisplayContextProvider;
 
-export const useDisplayContext = () => {
-  return useContext(DisplayContext);
-};
+export const useDisplayContext = () => useContext(DisplayContext);
