@@ -26,10 +26,10 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_ID!,
-      clientSecret: process.env.FACEBOOK_SECRET!,
-    }),
+    // FacebookProvider({
+    //   clientId: process.env.FACEBOOK_ID!,
+    //   clientSecret: process.env.FACEBOOK_SECRET!,
+    // }),
   ],
   adapter: PrismaAdapter(prisma),
   theme: {
