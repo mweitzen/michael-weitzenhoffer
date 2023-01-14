@@ -11,7 +11,7 @@ import { NextPageWithLayout } from "@/types";
 // import ThemeProvider from "@/context/theme";
 // import DisplayProvider from "@/context/display";
 //
-import DefaultLayout from "@/layouts/default";
+import PublicLayout from "@/layouts/public";
 
 /*
  *
@@ -50,9 +50,9 @@ const App = ({
       <QueryClientProvider client={queryClient}>
         {/* <ThemeProvider> */}
         {/* <DisplayProvider> */}
-        <DefaultLayout>
+        <PublicLayout>
           <Component {...pageProps} />
-        </DefaultLayout>
+        </PublicLayout>
         {/* </DisplayProvider> */}
         {/* </ThemeProvider> */}
       </QueryClientProvider>

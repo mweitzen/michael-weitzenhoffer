@@ -33,6 +33,28 @@ module.exports = {
         light: "var(--color-text-light)",
         inverted: "var(--color-text-inverted)",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
+      keyframes: {
+        "background-movement": {
+          "0%, 100%": {
+            backgroundPosition: "0% 100%",
+          },
+          "25%": {
+            backgroundPosition: "0% 0%",
+          },
+          "50%": {
+            backgroundPosition: "100% 0%",
+          },
+          "75%": {
+            backgroundPosition: "100% 100%",
+          },
+        },
+      },
+      animation: {
+        "background-movement": "background-movement 13s ease-in-out infinite",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],
