@@ -2,7 +2,7 @@ import NextAuth from "next-auth/next";
 import { type NextAuthOptions } from "next-auth";
 //
 import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
+// import FacebookProvider from "next-auth/providers/facebook";
 //
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
