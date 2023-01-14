@@ -8,16 +8,25 @@ import { SessionProvider } from "next-auth/react";
 //
 import { NextPageWithLayout } from "@/types";
 //
-// import ThemeProvider from "@/context/theme";
-// import DisplayProvider from "@/context/display";
+import ThemeProvider from "@/context/theme";
+import DisplayProvider from "@/context/display";
 //
 import PublicLayout from "@/layouts/public";
+//
+import { Lato } from "@next/font/google";
 
 /*
  *
  * INITIALIZERS
  *
  */
+export const font = Lato({
+  weight: ["100", "300", "400", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-family-sans",
+  display: "swap",
+});
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -48,13 +57,13 @@ const App = ({
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
-        {/* <ThemeProvider> */}
-        {/* <DisplayProvider> */}
-        <PublicLayout>
-          <Component {...pageProps} />
-        </PublicLayout>
-        {/* </DisplayProvider> */}
-        {/* </ThemeProvider> */}
+        <ThemeProvider>
+          <DisplayProvider>
+            <PublicLayout>
+              <Component {...pageProps} />
+            </PublicLayout>
+          </DisplayProvider>
+        </ThemeProvider>
       </QueryClientProvider>
     </SessionProvider>
   );
