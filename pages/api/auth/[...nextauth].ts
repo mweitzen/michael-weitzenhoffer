@@ -2,7 +2,6 @@ import NextAuth from "next-auth/next";
 import { type NextAuthOptions } from "next-auth";
 //
 import GoogleProvider from "next-auth/providers/google";
-// import FacebookProvider from "next-auth/providers/facebook";
 //
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
@@ -26,10 +25,6 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    // FacebookProvider({
-    //   clientId: process.env.FACEBOOK_ID!,
-    //   clientSecret: process.env.FACEBOOK_SECRET!,
-    // }),
   ],
   adapter: PrismaAdapter(prisma),
   theme: {
@@ -49,14 +44,14 @@ export const authOptions: NextAuthOptions = {
         return "/unauthorized";
       }
     },
-    async jwt({ token, user }) {
-      if (user?.email === "mike@weitzenhoffer.com") {
-        token.userRole = "admin";
-      } else {
-        token.userROle = "guest";
-      }
-      return token;
-    },
+    // async jwt({ token, user }) {
+    //   if (user?.email === "mike@weitzenhoffer.com") {
+    //     token.userRole = "admin";
+    //   } else {
+    //     token.userROle = "guest";
+    //   }
+    //   return token;
+    // },
     session: ({ session, user }) => ({
       ...session,
       user: {
