@@ -5,7 +5,7 @@ export interface IPageHeader {
 const PageHeader: React.FC<IPageHeader> = ({ header }) => {
   return (
     <header>
-      <h1 className="text-2xl font-thin">{header}</h1>
+      <h1 className="text-2xl font-light">{header}</h1>
     </header>
   );
 };

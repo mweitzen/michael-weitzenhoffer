@@ -6,7 +6,7 @@ export default function HomePage() {
       <SEO title="Home" />
       <div className="flex h-full items-center justify-center">
         <div className="grid gap-1 text-center">
-          <h1 className="text-2xl font-thin">Michael Weitzenhoffer</h1>
+          <h1 className="text-3xl font-thin">Michael Weitzenhoffer</h1>
           <p className="text-xs font-light uppercase tracking-widest">
             Pianist | Musician
           </p>

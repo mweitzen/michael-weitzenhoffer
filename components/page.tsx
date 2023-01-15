@@ -18,7 +18,7 @@ const PageComponent: React.FC<IPageComponent> = ({
     <>
       <SEO title={seoTitle} />
       <div className={PUBLIC_TOPBAR_HEIGHT} />
-      <div className="h-full text-center">
+      <div className="h-full p-4 text-center md:p-12">
         <PageHeader header={header} />
         {children}
       </div>

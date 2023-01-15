@@ -60,7 +60,7 @@ const PublicMenu = () => {
               >
                 <Link
                   href={routes.common.index.path}
-                  className="font-thin tracking-tighter"
+                  className="tracking-tighter"
                   onClick={closeMenu}
                 >
                   MW
