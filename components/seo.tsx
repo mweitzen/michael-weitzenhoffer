@@ -5,7 +5,7 @@ const meta = {
   description:
     "Michael Weitzenhoffer is a piano player based in Albuquerque, New Mexico. With a highly varied taste in music and a large repertoire, he loves taking requests and is always happy to learn a new tune.",
   logo: "/favicon.ico",
-  themeColor: "#7b46f6",
+  themeColor: "#000000",
 };
 
 export interface ISEOProps {
