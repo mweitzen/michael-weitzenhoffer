@@ -53,7 +53,7 @@ module.exports = {
         },
       },
       animation: {
-        "background-movement": "background-movement 13s ease-in-out infinite",
+        "background-movement": "background-movement 30s ease-in-out infinite",
       },
     },
   },

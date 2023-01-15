@@ -1,4 +1,5 @@
 import AudioPlayer, { IAudioTrack } from "@/components/audio-player";
+import PageComponent from "@/components/page";
 
 const tracks: IAudioTrack[] = [
   {
@@ -10,9 +11,6 @@ const tracks: IAudioTrack[] = [
 
 export default function RecordingsPage() {
   return (
-    <div className="grid gap-8">
-      <h1>Listen to Michael</h1>
-      {/* <AudioPlayer tracks={tracks} /> */}
-    </div>
+    <PageComponent header="Listen to Michael" seoTitle="Listen"></PageComponent>
   );
 }

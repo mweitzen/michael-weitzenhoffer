@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --color-dark-purple: hsl(273, 100%, 4%);
+    --color-dark-purple: hsl(273, 100%, 5%);
 
     /* --color-primary-main: hsl(26, 100%, 55%);
       --color-primary-shadow: hsl(26, 85%, 81%);

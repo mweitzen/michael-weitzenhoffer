@@ -1,7 +1,12 @@
+import PageComponent from "@/components/page";
+
 export default function GuestUserProfilePage() {
   return (
-    <>
-      <h1>Your Interactions with Michael</h1>
-    </>
+    <PageComponent
+      header="Your Interactions with Michael"
+      seoTitle="My Profile"
+    >
+      <p>Inside Jobs</p>
+    </PageComponent>
   );
 }

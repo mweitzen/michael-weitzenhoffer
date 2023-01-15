@@ -1,7 +1,10 @@
+import PageComponent from "@/components/page";
+
 export default function UpcomingEventsPage() {
   return (
-    <>
-      <h1>Upcoming Events</h1>
-    </>
+    <PageComponent
+      header="Upcoming Events"
+      seoTitle="Upcoming Events"
+    ></PageComponent>
   );
 }

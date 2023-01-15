@@ -9,12 +9,17 @@ import routes from "@/lib/routes";
 
 const PublicMenu = () => {
   const { showMenu, setShowMenu } = useDisplayContext();
+
+  function closeMenu() {
+    return setShowMenu(false);
+  }
+
   return (
     <Transition as={Fragment} show={showMenu}>
       <Dialog
         as="div"
-        className="relative z-20 text-white"
-        onClose={setShowMenu}
+        className="relative z-20 font-light text-white"
+        onClose={closeMenu}
       >
         <Transition.Child
           as={Fragment}
@@ -26,12 +31,8 @@ const PublicMenu = () => {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black bg-opacity-10 backdrop-blur">
-            <div className="absolute flex h-16 w-full items-center justify-between px-4 md:px-6">
-              <Link href="/" className="font-thin tracking-tighter">
-                MW
-              </Link>
-
-              <button>
+            <div className="absolute flex h-16 w-full flex-row-reverse items-center justify-between px-4 md:px-6">
+              <button onClick={closeMenu}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -47,6 +48,24 @@ const PublicMenu = () => {
                   />
                 </svg>
               </button>
+
+              <Transition.Child
+                as={Fragment}
+                enter="transition delay-200 duration-700 ease-out"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition duration-500"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <Link
+                  href={routes.common.index.path}
+                  className="font-thin tracking-tighter"
+                  onClick={closeMenu}
+                >
+                  MW
+                </Link>
+              </Transition.Child>
             </div>
           </div>
         </Transition.Child>
@@ -64,11 +83,19 @@ const PublicMenu = () => {
               as="div"
               className="pointer-events-auto grid gap-4 text-center text-white"
             >
+              <Link
+                href={routes.special.live.path}
+                className="border-4 border-black bg-black bg-opacity-5 py-6 px-12 text-lg font-medium uppercase tracking-widest"
+                onClick={closeMenu}
+              >
+                Interact Live
+              </Link>
               {routes.public.map((route, i) => (
                 <Link
                   key={i}
                   href={route.path}
-                  onClick={() => setShowMenu(false)}
+                  onClick={closeMenu}
+                  className="text-xs uppercase tracking-widest"
                 >
                   {route.name}
                 </Link>

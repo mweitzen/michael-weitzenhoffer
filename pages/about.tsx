@@ -1,7 +1,9 @@
+import PageComponent from "@/components/page";
+
 export default function AboutPage() {
   return (
-    <>
-      <h1>About Michael</h1>
-    </>
+    <PageComponent header="About Michael" seoTitle="About">
+      <p>Something inside</p>
+    </PageComponent>
   );
 }

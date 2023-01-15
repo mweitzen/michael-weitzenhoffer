@@ -1,34 +1,40 @@
 export default {
-  common: [
-    {
+  common: {
+    index: {
       name: "Home",
       path: "/",
     },
-    {
+    privacy: {
       name: "Privacy",
       path: "/privacy",
     },
-    {
+    login: {
       name: "Login",
       path: "/login",
     },
-  ],
+  },
+  special: {
+    live: {
+      name: "Interact Live",
+      path: "/live",
+    },
+  },
   public: [
+    {
+      name: "Listen",
+      path: "/listen",
+    },
     {
       name: "Upcoming Events",
       path: "/upcoming",
     },
     {
-      name: "Recordings",
-      path: "/recordings",
+      name: "About Michael",
+      path: "/about",
     },
     {
-      name: "Tip",
+      name: "Tips / Donations",
       path: "/tip",
-    },
-    {
-      name: "Live",
-      path: "/live",
     },
   ],
   admin: [

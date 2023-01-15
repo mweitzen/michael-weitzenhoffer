@@ -8,12 +8,12 @@ const meta = {
   themeColor: "#7b46f6",
 };
 
-interface SEOProps {
+export interface ISEOProps {
   title?: string;
   children?: React.ReactNode | React.ReactNode[];
 }
 
-const SEO: React.FC<SEOProps> = ({ title, children }) => {
+const SEO: React.FC<ISEOProps> = ({ title, children }) => {
   const providedTitle = title ? ` | ${title}` : "";
   const reconciledTitle = meta.title + providedTitle;
 
