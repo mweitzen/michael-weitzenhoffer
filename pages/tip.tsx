@@ -4,23 +4,14 @@ export default function TipPage() {
   return (
     <PageComponent header="Pay it Forward" seoTitle="Tips">
       <div className="space-y-8 text-center">
-        <ul>
+        <ul className="space-y-4">
           <li>
             <a
               href="https://account.venmo.com/u/weitzenhoffer"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Venmo (Online)
-            </a>
-          </li>
-          <li>
-            <a
-              href="venmo://users/weitzenhoffer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Venmo (App)
+              Venmo
             </a>
           </li>
           <li>
