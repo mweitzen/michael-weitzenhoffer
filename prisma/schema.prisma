@@ -21,24 +21,37 @@ datasource db {
 // *
 // *
 // *
-// * USER
+// * USER / PERFORMERS
 // *
 // *
 // *
 // *
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
+  id            String          @id @default(cuid())
+  email         String          @unique
   emailVerified DateTime?
   image         String?
   name          String?
   firstName     String?
   preferredName String?
   lastName      String?
-  createdAt     DateTime  @default(now())
-  // * auth
+  createdAt     DateTime        @default(now())
+  // auth
   accounts      Account[]
   sessions      Session[]
+  // musician
+  groups        Group[]
+  events        Event[]
+  repertoire    Song[]
+  songlists     SongListSongs[]
+}
+
+model Group {
+  id         String          @id @default(cuid())
+  events     Event[]
+  members    User[]
+  repertoire Song[]
+  songlists  SongListSongs[]
 }
 
 // *
@@ -88,8 +101,121 @@ model VerificationToken {
 // *
 // *
 // *
-// * PRISMA
+// * EVENT RELATED SCHEMA
 // *
 // *
 // *
 // *
+model Event {
+  id                 String    @id @default(cuid())
+  name               String
+  description        String?
+  timeStart          DateTime?
+  timeEnd            DateTime?
+  location           Location  @relation(fields: [locationId], references: [id])
+  locationId         String
+  // performer
+  performingArtist   User?     @relation(fields: [performingArtistId], references: [id])
+  performingArtistId String?
+  performingGroup    Group?    @relation(fields: [performingGroupId], references: [id])
+  performingGroupId  String?
+}
+
+model Location {
+  id         String       @id @default(cuid())
+  name       String       @unique
+  insideOf   Location?    @relation(name: "LocationHierarchy", fields: [insideOfId], references: [id])
+  insideOfId String?
+  inside     Location[]   @relation(name: "LocationHierarchy")
+  type       LocationType
+  //
+  events     Event[]
+}
+
+enum LocationType {
+  RESTAURANT
+  BAR
+  CLUB
+  STAGE
+  THEATER
+  VENUE
+  ROOM
+}
+
+// *
+// *
+// *
+// *
+// * REPERTOIRE 
+// *
+// *
+// *
+// *
+model SongListSongs {
+  id               String       @id @default(cuid())
+  user             User?        @relation(fields: [userId], references: [id])
+  userId           String?
+  group            Group?       @relation(fields: [groupId], references: [id])
+  groupId          String?
+  song             Song         @relation(fields: [songId], references: [id])
+  songId           String
+  modulated        Boolean      @default(false)
+  performanceRoot  MusicalRoot?
+  performanceNotes String?
+}
+
+model Artist {
+  id    String @id @default(cuid())
+  name  String
+  songs Song[]
+}
+
+model Song {
+  id                String          @id @default(cuid())
+  title             String
+  artist            Artist          @relation(fields: [artistId], references: [id])
+  artistId          String
+  year              Int
+  genre             Genre
+  root              MusicalRoot
+  mode              MusicalMode
+  songlists         SongListSongs[]
+  inUserRepertoire  User[]
+  inGroupRepertoire Group[]
+}
+
+enum MusicalRoot {
+  A
+  B_FLAT
+  B
+  C
+  D_FLAT_C_SHARP
+  D
+  E_FLAT
+  E
+  F
+  G_FLAT_F_SHARP
+  G
+  A_FLAT_G_SHARP
+}
+
+enum MusicalMode {
+  MAJOR
+  DORIAN
+  PHRYGIAN
+  LYDIAN
+  MIXOLYDIAN
+  MINOR
+  LOCRIAN
+}
+
+enum Genre {
+  POP_ROCK_RB
+  JAZZ
+  STANDARD
+  BLUES
+  CLASSICAL
+  BOSSA_NOVA
+  MUSICAL_THEATER
+  MISCELLANEOUS
+}
