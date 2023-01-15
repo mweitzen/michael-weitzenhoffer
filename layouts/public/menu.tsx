@@ -51,7 +51,7 @@ const PublicMenu = () => {
 
               <Transition.Child
                 as={Fragment}
-                enter="transition delay-200 duration-700 ease-out"
+                enter="transition duration-1000 ease-out"
                 enterFrom="opacity-0"
                 enterTo="opacity-100"
                 leave="transition duration-500"
@@ -85,7 +85,7 @@ const PublicMenu = () => {
             >
               <Link
                 href={routes.special.live.path}
-                className="border-4 border-black bg-black bg-opacity-5 py-6 px-12 text-lg font-medium uppercase tracking-widest"
+                className="border-4 border-black bg-black py-6 px-12 text-lg font-medium uppercase tracking-widest"
                 onClick={closeMenu}
               >
                 Interact Live

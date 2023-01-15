@@ -1,39 +1,34 @@
-import PageComponent from "@/components/page";
+import Page from "@/components/page";
+import ButtonLink from "@/components/button-link";
 
 export default function TipPage() {
   return (
-    <PageComponent header="Pay it Forward" seoTitle="Tips">
-      <div className="space-y-8 text-center">
-        <ul className="space-y-4">
-          <li>
-            <a
-              href="https://account.venmo.com/u/weitzenhoffer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Venmo
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.paypal.com/donate/?hosted_button_id=HZ6YUPDNUZTVL"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              PayPal (Online)
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://paypal.me/weitzenhoffer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              PayPal (App)
-            </a>
-          </li>
-        </ul>
+    <Page header="Pay it Forward" seoTitle="Tips">
+      <div className="mx-auto grid w-full max-w-xs gap-4">
+        <ButtonLink
+          href="https://account.venmo.com/u/weitzenhoffer"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Venmo
+        </ButtonLink>
+
+        <ButtonLink
+          href="https://www.paypal.com/donate/?hosted_button_id=HZ6YUPDNUZTVL"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          PayPal (Online)
+        </ButtonLink>
+
+        <ButtonLink
+          href="https://paypal.me/weitzenhoffer"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          PayPal (App)
+        </ButtonLink>
       </div>
-    </PageComponent>
+    </Page>
   );
 }

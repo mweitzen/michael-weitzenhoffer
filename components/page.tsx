@@ -9,21 +9,21 @@ interface IPageComponent extends IPageHeader, WithChildren {
   seoTitle?: string;
 }
 
-const PageComponent: React.FC<IPageComponent> = ({
+const Page: React.FC<IPageComponent> = ({
   header,
   children,
   seoTitle = "",
 }) => {
   return (
-    <>
+    <div className="flex h-full flex-col">
       <SEO title={seoTitle} />
       <div className={PUBLIC_TOPBAR_HEIGHT} />
-      <div className="text-center">
+      <div className="flex flex-grow flex-col">
         <PageHeader header={header} />
         {children}
       </div>
-    </>
+    </div>
   );
 };
 
-export default PageComponent;
+export default Page;
