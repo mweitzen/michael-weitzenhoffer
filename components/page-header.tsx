@@ -4,8 +4,8 @@ export interface IPageHeader {
 
 const PageHeader: React.FC<IPageHeader> = ({ header }) => {
   return (
-    <header>
-      <h1 className="text-2xl font-light">{header}</h1>
+    <header className="py-4">
+      <h1 className="text-xs font-light uppercase tracking-widest">{header}</h1>
     </header>
   );
 };
