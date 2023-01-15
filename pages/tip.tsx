@@ -7,11 +7,20 @@ export default function TipPage() {
         <ul>
           <li>
             <a
-              href="venmo://users/@weitzenhoffer"
+              href="https://account.venmo.com/u/weitzenhoffer"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Venmo
+              Venmo (Online)
+            </a>
+          </li>
+          <li>
+            <a
+              href="venmo://users/weitzenhoffer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Venmo (App)
             </a>
           </li>
           <li>
@@ -20,7 +29,7 @@ export default function TipPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              PayPal
+              PayPal (Online)
             </a>
           </li>
           <li>
@@ -29,13 +38,10 @@ export default function TipPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              PayPal.me
+              PayPal (App)
             </a>
           </li>
         </ul>
-        <div className="flex justify-center">
-          <img src="qr-paypal.png" />
-        </div>
       </div>
     </PageComponent>
   );
