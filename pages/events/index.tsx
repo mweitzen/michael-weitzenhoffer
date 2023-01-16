@@ -12,7 +12,11 @@ export default function EventsListPage() {
           <div>Loading...</div>
         ) : (
           <div>
-            {data ? data.map((item) => <p>Event</p>) : <p>No events.</p>}
+            {data ? (
+              data.map((item, i) => <p key={i}>Event</p>)
+            ) : (
+              <p>No events.</p>
+            )}
           </div>
         )}
       </div>
