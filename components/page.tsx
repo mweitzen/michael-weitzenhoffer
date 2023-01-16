@@ -17,10 +17,10 @@ const Page: React.FC<IPageComponent> = ({
   return (
     <div className="flex h-full flex-col">
       <SEO title={seoTitle} />
-      <div className={PUBLIC_TOPBAR_HEIGHT} />
-      <div className="flex flex-grow flex-col">
+      <div className={`${PUBLIC_TOPBAR_HEIGHT} shrink-0`} />
+      <div className="flex flex-col overflow-hidden">
         <PageHeader header={header} />
-        {children}
+        <div className="overflow-y-scroll">{children}</div>
       </div>
     </div>
   );

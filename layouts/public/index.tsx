@@ -14,7 +14,7 @@ const PublicLayout: React.FC<WithChildren> = ({ children }) => {
       <PublicTopbar />
 
       {/* MAIN */}
-      <main className="flex-grow">{children}</main>
+      <main className="h-full">{children}</main>
 
       {/* OVERLAYS */}
       <Menu />

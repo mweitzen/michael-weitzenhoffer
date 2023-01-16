@@ -17,6 +17,10 @@
     --color-text-light: hsl(220, 14%, 75%);
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
   ::-webkit-scrollbar {
     display: none;
   }
