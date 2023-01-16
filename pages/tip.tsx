@@ -3,7 +3,7 @@ import ButtonLink from "@/components/button-link";
 
 export default function TipPage() {
   return (
-    <Page header="Pay it Forward" seoTitle="Tips">
+    <Page header="Send a Tip" seoTitle="Tips">
       <div className="mx-auto grid w-full max-w-xs gap-4">
         <ButtonLink
           href="https://account.venmo.com/u/weitzenhoffer"
