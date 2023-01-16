@@ -3,7 +3,7 @@ import { font } from "./_app";
 
 export default function Document() {
   return (
-    <Html lang="en" className={`${font.variable} bg-black`}>
+    <Html lang="en" className={`${font.variable}`}>
       <Head />
       <body>
         <Main />

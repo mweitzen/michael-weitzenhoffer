@@ -1,8 +1,10 @@
 import Link from "next/link";
+
 import { api } from "@/lib/api";
 import { formatDateSimple, formatTimeSimple } from "@/lib/formatters/dates";
 //
 import Page from "@/components/page";
+//
 import ArrowUpRight from "@/icons/arrow-up-right";
 
 export default function EventsListPage() {

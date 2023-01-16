@@ -5,11 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/context": ["context/index"],
       "@/context/*": ["context/*"],
       "@/icons/*": ["icons/*"],
-      "@/layouts/*": ["layouts/*"],
-      "@/partials/*": ["partials/*"],
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
       "@/types": ["types/index"],

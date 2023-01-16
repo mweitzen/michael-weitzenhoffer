@@ -2,8 +2,8 @@ import { WithChildren } from "@/types";
 //
 import { font } from "pages/_app";
 //
-import PublicTopbar from "./topbar";
-import Menu from "./menu";
+import PublicTopbar from "./topbar-public";
+import Menu from "./menu-public";
 
 const PublicLayout: React.FC<WithChildren> = ({ children }) => {
   return (

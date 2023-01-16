@@ -19,7 +19,7 @@ export default function EventDetailPage() {
 
   return (
     <Page header="Event Detail Page" seoTitle="Event Detail">
-      <div>
+      <div className="px-4">
         <p>{event.name}</p>
         <p>Location:</p>
         <p>{event.location.name}</p>

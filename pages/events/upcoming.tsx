@@ -2,7 +2,7 @@ import Link from "next/link";
 //
 import { formatDateSimple, formatTimeSimple } from "@/lib/formatters/dates";
 //
-import PageComponent from "@/components/page";
+import Page from "@/components/page";
 //
 import ArrowUpRight from "@/icons/arrow-up-right";
 
@@ -46,7 +46,7 @@ const events = [
 
 export default function UpcomingEventsPage() {
   return (
-    <PageComponent header="Upcoming Events" seoTitle="Upcoming Events">
+    <Page header="Upcoming Events" seoTitle="Upcoming Events">
       <div className="px-4 pb-8">
         <div className="flex flex-col gap-y-4">
           {events.map((event) => (
@@ -77,6 +77,6 @@ export default function UpcomingEventsPage() {
           ))}
         </div>
       </div>
-    </PageComponent>
+    </Page>
   );
 }

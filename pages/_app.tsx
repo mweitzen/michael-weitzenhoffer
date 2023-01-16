@@ -11,7 +11,7 @@ import { NextPageWithLayout } from "@/types";
 import ThemeProvider from "@/context/theme";
 import DisplayProvider from "@/context/display";
 //
-import PublicLayout from "@/layouts/public";
+import PublicLayout from "@/components/layout-public";
 //
 import { Lato } from "@next/font/google";
 
