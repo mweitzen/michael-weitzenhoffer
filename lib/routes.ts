@@ -1,4 +1,4 @@
-export default {
+const routes = {
   common: {
     index: {
       name: "Home",
@@ -43,3 +43,5 @@ export default {
   ],
   admin: [],
 };
+
+export default routes;
