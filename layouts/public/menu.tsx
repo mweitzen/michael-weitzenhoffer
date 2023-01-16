@@ -81,11 +81,11 @@ const PublicMenu = () => {
           <div className="pointer-events-none fixed inset-0 grid transform place-content-center">
             <Dialog.Panel
               as="div"
-              className="pointer-events-auto grid gap-4 text-center text-white"
+              className="pointer-events-auto grid text-center text-white"
             >
               <Link
-                href={routes.special.live.path}
-                className="border-4 border-black bg-black py-6 px-12 text-lg font-medium uppercase tracking-widest"
+                href={routes.special.app.path}
+                className="mb-4 border-4 border-black bg-black bg-opacity-95 py-6 px-16 text-lg font-medium uppercase tracking-widest"
                 onClick={closeMenu}
               >
                 Interact Live
@@ -95,7 +95,7 @@ const PublicMenu = () => {
                   key={i}
                   href={route.path}
                   onClick={closeMenu}
-                  className="text-xs uppercase tracking-widest"
+                  className="py-3 text-sm uppercase tracking-widest"
                 >
                   {route.name}
                 </Link>

@@ -14,33 +14,32 @@ export default {
     },
   },
   special: {
-    live: {
+    app: {
       name: "Interact Live",
-      path: "/live",
+      path: "/app",
     },
   },
   public: [
     {
-      name: "Listen",
-      path: "/listen",
+      name: "Upcoming Events",
+      path: "/events/upcoming",
     },
     {
-      name: "Upcoming Events",
-      path: "/upcoming",
+      name: "Repertoire",
+      path: "/songs",
+    },
+    {
+      name: "Listen",
+      path: "/listen",
     },
     {
       name: "About Michael",
       path: "/about",
     },
     {
-      name: "Tips / Donations",
+      name: "Tip Online",
       path: "/tip",
     },
   ],
-  admin: [
-    {
-      name: "Auth",
-      path: "/auth",
-    },
-  ],
+  admin: [],
 };
