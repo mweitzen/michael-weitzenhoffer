@@ -33,7 +33,7 @@ const routes = {
       path: "/listen",
     },
     {
-      name: "About Michael",
+      name: "About",
       path: "/about",
     },
     {

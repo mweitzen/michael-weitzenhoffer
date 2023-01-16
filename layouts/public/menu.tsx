@@ -6,6 +6,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useDisplayContext } from "@/context/display";
 //
 import routes from "@/lib/routes";
+import Close from "@/icons/close";
 
 const PublicMenu = () => {
   const { showMenu, setShowMenu } = useDisplayContext();
@@ -21,6 +22,7 @@ const PublicMenu = () => {
         className="relative z-20 font-light text-white"
         onClose={closeMenu}
       >
+        {/* BACKDROP / TOP BUTTONS */}
         <Transition.Child
           as={Fragment}
           enter="transition duration-700 ease-out"
@@ -32,23 +34,12 @@ const PublicMenu = () => {
         >
           <div className="fixed inset-0 bg-black bg-opacity-10 backdrop-blur">
             <div className="absolute flex h-16 w-full flex-row-reverse items-center justify-between px-4 md:px-6">
+              {/* CLOSE */}
               <button onClick={closeMenu}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1}
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <Close className="h-6 w-6" />
               </button>
 
+              {/* LOGO */}
               <Transition.Child
                 as={Fragment}
                 enter="transition duration-1000 ease-out"
@@ -69,6 +60,8 @@ const PublicMenu = () => {
             </div>
           </div>
         </Transition.Child>
+
+        {/* MENU */}
         <Transition.Child
           as={Fragment}
           enter="transition duration-700 ease-out"
@@ -83,23 +76,28 @@ const PublicMenu = () => {
               as="div"
               className="pointer-events-auto grid text-center text-white"
             >
+              {/* INTERACT LIVE */}
               <Link
                 href={routes.special.app.path}
-                className="mb-4 border-4 border-black bg-black bg-opacity-95 py-6 px-16 text-lg font-medium uppercase tracking-widest"
+                className="mb-4 bg-black bg-opacity-90 py-6 px-16 text-lg font-medium uppercase tracking-widest"
                 onClick={closeMenu}
               >
                 Interact Live
               </Link>
-              {routes.public.map((route, i) => (
-                <Link
-                  key={i}
-                  href={route.path}
-                  onClick={closeMenu}
-                  className="py-3 text-sm uppercase tracking-widest"
-                >
-                  {route.name}
-                </Link>
-              ))}
+
+              {/* NAVIGATION */}
+              <div className="grid bg-black bg-opacity-30 py-4">
+                {routes.public.map((route, i) => (
+                  <Link
+                    key={i}
+                    href={route.path}
+                    onClick={closeMenu}
+                    className="py-3 text-sm uppercase tracking-widest"
+                  >
+                    {route.name}
+                  </Link>
+                ))}
+              </div>
             </Dialog.Panel>
           </div>
         </Transition.Child>
