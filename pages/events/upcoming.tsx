@@ -47,35 +47,31 @@ const events = [
 export default function UpcomingEventsPage() {
   return (
     <Page header="Upcoming Events" seoTitle="Upcoming Events">
-      <div className="px-4 pb-8">
-        <div className="flex flex-col gap-y-4">
-          {events.map((event) => (
-            <Link key={event.id} href={`${event.id}`}>
-              <section className="relative bg-black bg-opacity-75 p-4">
-                <div className="space-y-1">
-                  {/* title */}
-                  <div className="flex items-center justify-between gap-x-4">
-                    <h2 className="truncate text-lg font-light tracking-tight">
-                      {event.name}
-                    </h2>
-                    <ArrowUpRight className="shrink-0" />
-                  </div>
+      <div className="flex flex-col gap-y-4 pb-8">
+        {events.map((event) => (
+          <Link key={event.id} href={`${event.id}`}>
+            <section className="relative space-y-1 bg-black bg-opacity-75 p-4">
+              {/* title */}
+              <div className="flex items-center justify-between gap-x-4">
+                <h2 className="truncate text-lg font-light tracking-tight">
+                  {event.name}
+                </h2>
+                <ArrowUpRight className="shrink-0" />
+              </div>
 
-                  {/* day/time */}
-                  <div>
-                    <p>{formatDateSimple(event.timeStart)}</p>
-                    <p className="text-xs font-light tracking-wide">{`${formatTimeSimple(
-                      event.timeStart
-                    )} - ${formatTimeSimple(event.timeEnd)}`}</p>
-                  </div>
+              {/* day/time */}
+              <div>
+                <p>{formatDateSimple(event.timeStart)}</p>
+                <p className="text-xs font-light tracking-wide text-light">{`${formatTimeSimple(
+                  event.timeStart
+                )} - ${formatTimeSimple(event.timeEnd)}`}</p>
+              </div>
 
-                  {/* location */}
-                  <p className="text-sm">{event.location.name}</p>
-                </div>
-              </section>
-            </Link>
-          ))}
-        </div>
+              {/* location */}
+              <p className="text-sm">{event.location.name}</p>
+            </section>
+          </Link>
+        ))}
       </div>
     </Page>
   );

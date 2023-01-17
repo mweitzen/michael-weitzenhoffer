@@ -6,7 +6,7 @@ export default function GuestUserProfilePage() {
       header="Your Interactions with Michael"
       seoTitle="My Profile"
     >
-      <p>Inside Jobs</p>
+      <div className="text-center">Coming Soon</div>
     </PageComponent>
   );
 }

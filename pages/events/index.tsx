@@ -12,7 +12,7 @@ export default function EventsListPage() {
 
   return (
     <Page header="All Events">
-      <div className="px-4 pb-8">
+      <div className="pb-8">
         {isLoading ? (
           <div>Loading...</div>
         ) : (

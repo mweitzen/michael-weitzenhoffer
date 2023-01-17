@@ -1,3 +1,4 @@
+import ActionBar from "@/components/action-bar";
 import PageComponent from "@/components/page";
 import ChatBubble from "@/icons/chat-bubble";
 import Envelope from "@/icons/envelope";
@@ -19,7 +20,7 @@ export default function ContactPage() {
           <input
             readOnly
             value={email}
-            onClick={(e) => {
+            onFocus={(e) => {
               copyToClipboard(e.target.value);
             }}
             className="w-full bg-black py-3 text-center"
@@ -30,7 +31,7 @@ export default function ContactPage() {
           <input
             readOnly
             value={phone}
-            onClick={(e) => {
+            onFocus={(e) => {
               copyToClipboard(e.target.value);
             }}
             className="w-full bg-black py-3 text-center"
@@ -41,7 +42,7 @@ export default function ContactPage() {
           <input
             readOnly
             value={instagram}
-            onClick={(e) => {
+            onFocus={(e) => {
               copyToClipboard(e.target.value);
             }}
             className="w-full bg-black py-3 text-center"
@@ -50,29 +51,40 @@ export default function ContactPage() {
       </section>
 
       {/* CONTACT BAR */}
-      <footer className="fixed bottom-0 left-0 right-0 grid grid-cols-3 gap-x-2 p-4">
-        <a
-          href={`tel:${phoneHref}`}
-          className="flex items-center justify-center gap-x-2 bg-white bg-opacity-5 py-3 text-xs uppercase tracking-widest"
-        >
-          <Phone />
-          Call Me
-        </a>
-        <a
-          href={`sms:${phoneHref}`}
-          className="flex items-center justify-center gap-x-2 bg-white bg-opacity-5 py-3 text-xs uppercase tracking-widest"
-        >
-          <ChatBubble />
-          Text Me
-        </a>
-        <a
-          href={`mailto:${email}`}
-          className="flex items-center justify-center gap-x-2 bg-white bg-opacity-5 py-3 text-xs uppercase tracking-widest"
-        >
-          <Envelope />
-          Email Me
-        </a>
-      </footer>
+      <ActionBar
+        actions={[
+          {
+            type: "link",
+            href: `tel:${phoneHref}`,
+            children: (
+              <>
+                <Phone />
+                Call Me
+              </>
+            ),
+          },
+          {
+            type: "link",
+            href: `sms:${phoneHref}`,
+            children: (
+              <>
+                <ChatBubble />
+                Text Me
+              </>
+            ),
+          },
+          {
+            type: "link",
+            href: `mailto:${email}`,
+            children: (
+              <>
+                <Envelope />
+                Email Me
+              </>
+            ),
+          },
+        ]}
+      />
     </PageComponent>
   );
 }

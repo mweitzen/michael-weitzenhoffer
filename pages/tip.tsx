@@ -10,11 +10,7 @@ const services = [
     path: "https://cash.app/$MikeWeitz",
   },
   {
-    name: "PayPal (Online)",
-    path: "https://www.paypal.com/donate/?hosted_button_id=HZ6YUPDNUZTVL",
-  },
-  {
-    name: "PayPal (App)",
+    name: "PayPal",
     path: "https://paypal.me/weitzenhoffer",
   },
 ];

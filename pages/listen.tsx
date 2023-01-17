@@ -11,6 +11,8 @@ const tracks: IAudioTrack[] = [
 
 export default function RecordingsPage() {
   return (
-    <PageComponent header="Listen to Michael" seoTitle="Listen"></PageComponent>
+    <PageComponent header="Listen to Michael" seoTitle="Listen">
+      <div className="text-center">Coming Soon</div>
+    </PageComponent>
   );
 }
