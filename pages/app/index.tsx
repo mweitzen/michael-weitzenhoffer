@@ -15,7 +15,7 @@ export default function AppHomePage() {
           {
             type: "link",
             internal: true,
-            href: "",
+            href: "/songs",
             children: (
               <>
                 <RequestIcon />
@@ -26,7 +26,7 @@ export default function AppHomePage() {
           {
             type: "link",
             internal: true,
-            href: "",
+            href: "/contact",
             children: (
               <>
                 <ChatBubble />
@@ -37,7 +37,7 @@ export default function AppHomePage() {
           {
             type: "link",
             internal: true,
-            href: "",
+            href: "/tip",
             children: (
               <>
                 <Banknotes />

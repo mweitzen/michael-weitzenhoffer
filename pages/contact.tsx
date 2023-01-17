@@ -14,39 +14,26 @@ export default function ContactPage() {
   return (
     <PageComponent header="Contact Michael" seoTitle="Contact">
       {/* BASIC CONTACT INFO */}
-      <section className="grid gap-y-2 text-center text-sm">
+      <section className="grid gap-y-4 text-center text-sm">
         <div>
-          <p>Email</p>
-          <input
+          <p className="text-sm">Email</p>
+          <p>{email}</p>
+          {/* <input
             readOnly
             value={email}
             onFocus={(e) => {
               copyToClipboard(e.target.value);
             }}
             className="w-full bg-black py-3 text-center"
-          />
+          /> */}
         </div>
         <div>
-          <p>Phone</p>
-          <input
-            readOnly
-            value={phone}
-            onFocus={(e) => {
-              copyToClipboard(e.target.value);
-            }}
-            className="w-full bg-black py-3 text-center"
-          />
+          <p className="text-sm">Phone</p>
+          <p>{phone}</p>
         </div>
         <div>
-          <p>Instagram</p>
-          <input
-            readOnly
-            value={instagram}
-            onFocus={(e) => {
-              copyToClipboard(e.target.value);
-            }}
-            className="w-full bg-black py-3 text-center"
-          />
+          <p className="text-sm">Instagram</p>
+          <p>{instagram}</p>
         </div>
       </section>
 

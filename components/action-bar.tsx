@@ -11,7 +11,7 @@ interface IActionBar {
 }
 
 const className =
-  "flex items-center justify-center gap-x-2 bg-white bg-opacity-5 py-3 text-xs uppercase tracking-widest backdrop-blur";
+  "flex items-center justify-center gap-x-2 bg-white bg-opacity-5 py-3 text-xs uppercase tracking-widest backdrop-blur overflow-hidden whitespace-nowrap";
 
 const ActionBar: React.FC<IActionBar> = ({ actions }) => {
   return (

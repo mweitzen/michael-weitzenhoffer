@@ -50,7 +50,7 @@ export default function UpcomingEventsPage() {
       <div className="flex flex-col gap-y-4 pb-8">
         {events.map((event) => (
           <Link key={event.id} href={`${event.id}`}>
-            <section className="relative space-y-1 bg-black bg-opacity-75 p-4">
+            <section className="relative space-y-1 bg-white bg-opacity-5 p-4">
               {/* title */}
               <div className="flex items-center justify-between gap-x-4">
                 <h2 className="truncate text-lg font-light tracking-tight">

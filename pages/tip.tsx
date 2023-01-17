@@ -17,7 +17,7 @@ const services = [
 
 export default function TipPage() {
   return (
-    <Page header="Send a Tip" seoTitle="Tips">
+    <Page header="Send a Tip" seoTitle="Tip Me">
       <div className="mx-auto grid w-full max-w-xs gap-4">
         {services.map((service, i) => (
           <a
@@ -25,7 +25,7 @@ export default function TipPage() {
             href={service.path}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-black bg-opacity-50 py-8 text-center"
+            className="w-full bg-white bg-opacity-5 py-8 text-center"
           >
             {service.name}
           </a>

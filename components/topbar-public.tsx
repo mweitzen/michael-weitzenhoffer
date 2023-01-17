@@ -6,7 +6,7 @@ const PublicTopbar = () => {
 
   return (
     <div
-      className={`${PUBLIC_TOPBAR_HEIGHT} fixed z-10 flex w-full items-center justify-between bg-black bg-opacity-50 px-4 md:px-6`}
+      className={`${PUBLIC_TOPBAR_HEIGHT} fixed z-10 flex w-full items-center justify-between bg-black bg-opacity-50 px-4 backdrop-blur md:px-6`}
     >
       <span />
 

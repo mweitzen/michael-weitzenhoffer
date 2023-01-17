@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <PageComponent header="About Michael" seoTitle="About">
-      <section className="px-4 leading-loose">
+      <section className="px-4 pb-8 leading-loose">
         <p>
           Originally from Ohio, Michael Weitzenhoffer is a piano player based in
           Albuquerque, New Mexico.
@@ -20,7 +20,7 @@ export default function AboutPage() {
           he loves taking requests and is always happy to learn a new tune.
         </p>
         <Link href="/contact">
-          <div className="w-full bg-black py-16 text-center uppercase tracking-widest">
+          <div className="mt-8 w-full bg-white bg-opacity-5 py-8 text-center uppercase tracking-widest">
             Go to contact page
           </div>
         </Link>
