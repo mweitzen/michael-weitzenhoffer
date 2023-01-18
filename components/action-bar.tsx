@@ -26,7 +26,12 @@ const ActionBar: React.FC<IActionBar> = ({ actions }) => {
             ); // internal link
           } else {
             return (
-              <a key={i} href={rest.href} className={className}>
+              <a
+                key={i}
+                href={rest.href}
+                className={className}
+                target={rest.target}
+              >
                 {children}
               </a>
             ); // external link

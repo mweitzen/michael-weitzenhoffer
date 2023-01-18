@@ -1,14 +1,12 @@
-import songs from "./seed-data/songs";
+// import events from "./seed-data/events";
+// import locations from "./seed-data/locations";
+// import events from "./seed-data/events";
 //
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, StageType, LocationType } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-async function main() {
-  /*
-   * CREATE SONGS
-   */
-}
+async function main() {}
 
 main()
   .then(async () => {

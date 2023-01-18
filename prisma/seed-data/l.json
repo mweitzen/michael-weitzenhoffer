@@ -1,0 +1,45 @@
+{
+  "id": "cld0sdajt00009kztgzn3n5if",
+  "name": "Vernon's Speakeasy",
+  "active": true,
+  "website": "https://www.yougottapassword.com/",
+  "phone": "505-341-0831",
+  "addressId": "cld0sdaju00019kztn5uby9fa",
+  "insideOfId": null,
+  "type": "RESTAURANT",
+  "address": {
+    "id": "cld0sdaju00019kztn5uby9fa",
+    "streetNumber": "6855",
+    "streetId": "cld0sdaju00049kztiknrhep9",
+    "unit": null,
+    "zipCodeId": "cld0sdaju00029kzt42be2bbv",
+    "street": {
+      "id": "cld0sdaju00049kztiknrhep9",
+      "name": "4th St NW",
+      "neighborhoodId": "cld0sdaju00059kztgh1tvaim",
+      "cityId": "cld0sdaju000b9kzt7z07gf36",
+      "city": {
+        "id": "cld0sdaju000b9kzt7z07gf36",
+        "name": "Albuquerque",
+        "countyId": "cld0sdaju000c9kzt8u7j8xgg",
+        "county": {
+          "id": "cld0sdaju000c9kzt8u7j8xgg",
+          "name": "Bernalillo",
+          "stateId": "cld0sdaju000d9kztxqr54c35",
+          "state": { "id": "cld0sdaju000d9kztxqr54c35", "name": "New Mexico" }
+        }
+      },
+      "neighborhood": {
+        "id": "cld0sdaju00059kztgh1tvaim",
+        "name": "Los Ranchos",
+        "cityId": "cld0sdaju00069kzt2l8dp88q",
+        "city": {
+          "id": "cld0sdaju00069kzt2l8dp88q",
+          "name": "Albuquerque",
+          "countyId": "cld0sdaju00079kzt8o7y8jqp"
+        }
+      }
+    },
+    "zipcode": { "id": "cld0sdaju00029kzt42be2bbv", "code": 87107 }
+  }
+}

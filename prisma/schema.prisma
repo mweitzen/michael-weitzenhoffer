@@ -101,33 +101,84 @@ model VerificationToken {
 // *
 // *
 // *
-// * EVENT RELATED SCHEMA
+// * ADDRESS
 // *
 // *
 // *
 // *
-model Event {
-  id                 String    @id @default(cuid())
-  name               String
-  description        String?
-  timeStart          DateTime?
-  timeEnd            DateTime?
-  location           Location  @relation(fields: [locationId], references: [id])
-  locationId         String
-  // performer
-  performingArtist   User?     @relation(fields: [performingArtistId], references: [id])
-  performingArtistId String?
-  performingGroup    Group?    @relation(fields: [performingGroupId], references: [id])
-  performingGroupId  String?
+model Address {
+  id           String     @id @default(cuid())
+  complete     String?
+  streetNumber String
+  street       Street     @relation(fields: [streetId], references: [id])
+  streetId     String
+  unit         String?
+  zipcode      ZipCode    @relation(fields: [zipCodeId], references: [id])
+  zipCodeId    String
+  //
+  locations    Location[]
+}
+
+model ZipCode {
+  id      String    @id @default(cuid())
+  code    Int
+  Address Address[]
+}
+
+model Street {
+  id             String        @id @default(cuid())
+  name           String
+  neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
+  neighborhoodId String?
+  city           City          @relation(fields: [cityId], references: [id])
+  cityId         String
+  Address        Address[]
+}
+
+model Neighborhood {
+  id      String   @id @default(cuid())
+  name    String
+  streets Street[]
+  city    City     @relation(fields: [cityId], references: [id])
+  cityId  String
+}
+
+model City {
+  id            String         @id @default(cuid())
+  name          String
+  county        County         @relation(fields: [countyId], references: [id])
+  countyId      String
+  neighborhoods Neighborhood[]
+  streets       Street[]
+}
+
+model County {
+  id      String @id @default(cuid())
+  name    String
+  state   State  @relation(fields: [stateId], references: [id])
+  cities  City[]
+  stateId String
+}
+
+model State {
+  id       String   @id @default(cuid())
+  name     String
+  counties County[]
 }
 
 model Location {
   id         String       @id @default(cuid())
-  name       String       @unique
+  name       String
+  active     Boolean      @default(true)
+  website    String?
+  phone      String?
+  address    Address      @relation(fields: [addressId], references: [id])
+  addressId  String
   insideOf   Location?    @relation(name: "LocationHierarchy", fields: [insideOfId], references: [id])
   insideOfId String?
   inside     Location[]   @relation(name: "LocationHierarchy")
   type       LocationType
+  stages     Stage[]
   //
   events     Event[]
 }
@@ -136,10 +187,53 @@ enum LocationType {
   RESTAURANT
   BAR
   CLUB
-  STAGE
   THEATER
   VENUE
+  COMPLEX
+}
+
+model Stage {
+  id         String    @id @default(cuid())
+  name       String
+  active     Boolean   @default(true)
+  location   Location  @relation(fields: [locationId], references: [id])
+  locationId String
+  events     Event[]
+  type       StageType
+}
+
+enum StageType {
+  STAGE
   ROOM
+}
+
+// *
+// *
+// *
+// *
+// * EVENT RELATED SCHEMA
+// *
+// *
+// *
+// *
+model Event {
+  id                  String    @id @default(cuid())
+  name                String
+  description         String?
+  rsvpLink            String?
+  requiresTicket      Boolean   @default(false)
+  requiresReservation Boolean   @default(false)
+  details             String?
+  timeStart           DateTime?
+  timeEnd             DateTime?
+  location            Location  @relation(fields: [locationId], references: [id])
+  locationId          String
+  stage               Stage?    @relation(fields: [stageId], references: [id])
+  stageId             String?
+  performingArtist    User?     @relation(fields: [performingArtistId], references: [id])
+  performingArtistId  String?
+  performingGroup     Group?    @relation(fields: [performingGroupId], references: [id])
+  performingGroupId   String?
 }
 
 // *
