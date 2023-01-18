@@ -15,25 +15,32 @@ export default function ContactPage() {
     <PageComponent header="Contact Michael" seoTitle="Contact">
       {/* BASIC CONTACT INFO */}
       <section className="grid gap-y-4 text-center text-sm">
-        <div>
-          <p className="text-sm">Email</p>
-          <p>{email}</p>
-          {/* <input
-            readOnly
-            value={email}
-            onFocus={(e) => {
-              copyToClipboard(e.target.value);
-            }}
-            className="w-full bg-black py-3 text-center"
-          /> */}
+        <div className="space-y-1">
+          <p className="text-sm tracking-wide">Email</p>
+          <p
+            className="mx-auto w-full max-w-xs bg-white bg-opacity-5 py-3 focus:ring-0 focus:ring-offset-1 focus:ring-offset-purple-900"
+            onClick={() => copyToClipboard(email)}
+          >
+            {email}
+          </p>
         </div>
-        <div>
-          <p className="text-sm">Phone</p>
-          <p>{phone}</p>
+        <div className="space-y-1">
+          <p className="text-sm tracking-wide">Phone</p>
+          <p
+            className="mx-auto w-full max-w-xs bg-white bg-opacity-5 py-3 focus:ring-0 focus:ring-offset-1 focus:ring-offset-purple-900"
+            onClick={() => copyToClipboard(phone)}
+          >
+            {phone}
+          </p>
         </div>
-        <div>
-          <p className="text-sm">Instagram</p>
-          <p>{instagram}</p>
+        <div className="space-y-1">
+          <p className="text-sm tracking-wide">Instagram</p>
+          <p
+            className="mx-auto w-full max-w-xs bg-white bg-opacity-5 py-3 focus:ring-0 focus:ring-offset-1 focus:ring-offset-purple-900"
+            onClick={() => copyToClipboard(instagram)}
+          >
+            {instagram}
+          </p>
         </div>
       </section>
 

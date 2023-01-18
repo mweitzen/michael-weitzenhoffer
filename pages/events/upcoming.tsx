@@ -15,7 +15,7 @@ const EventLoadingState = () => (
   </section>
 );
 
-const EmptyState = () => (
+const EventEmptyState = () => (
   <section className="space-y-1 bg-white bg-opacity-5 p-4">
     <p className="text-lg font-light tracking-tight">No upcoming events.</p>
     <div>
@@ -26,7 +26,7 @@ const EmptyState = () => (
   </section>
 );
 
-const EventLink = ({ event }: { event: any }) => (
+const EventListItem = ({ event }: { event: any }) => (
   <Link href={`${event.id}`}>
     <section className="relative space-y-1 bg-white bg-opacity-5 p-4">
       {/* title */}
@@ -64,9 +64,9 @@ export default function UpcomingEventsPage() {
             <EventLoadingState />
           </>
         ) : !events || events.length === 0 ? (
-          <EmptyState />
+          <EventEmptyState />
         ) : (
-          events.map((event) => <EventLink key={event.id} event={event} />)
+          events.map((event) => <EventListItem key={event.id} event={event} />)
         )}
       </div>
     </Page>

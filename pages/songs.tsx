@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 //
 import { api } from "@/lib/api";
+import { Song, Artist } from "@prisma/client";
 import { Transition, Listbox } from "@headlessui/react";
 //
 import PageComponent from "@/components/page";
@@ -8,21 +9,43 @@ import PageComponent from "@/components/page";
 import ChevronUpDown from "@/icons/chevron-up-down";
 import MagnifyingGlass from "@/icons/magnifying-glass";
 
-const ListboxDemo = () => {
-  return (
-    <Listbox as="div" className="relative">
-      <Listbox.Button className="flex items-center justify-between bg-white bg-opacity-5 py-2 px-4">
-        Artist
-        <ChevronUpDown className="pointer-events-none" />
-      </Listbox.Button>
-      <Transition>
-        <Listbox.Options>
-          <Listbox.Option value={"deeznutz"}>Suxk Deez Nuts</Listbox.Option>
-        </Listbox.Options>
-      </Transition>
-    </Listbox>
-  );
-};
+// const ListboxDemo = () => {
+//   return (
+//     <Listbox as="div" className="relative flex-1">
+//       <Listbox.Button className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
+//         Artist
+//         <ChevronUpDown className="pointer-events-none" />
+//       </Listbox.Button>
+//       <Transition>
+//         <Listbox.Options className="absolute mt-1 max-h-60 overflow-auto bg-white bg-opacity-5 py-2 px-4 text-sm ring-1 ring-purple-900">
+//           <Listbox.Option value={"deeznutz"}>Suxk Deez Nuts</Listbox.Option>
+//         </Listbox.Options>
+//       </Transition>
+//     </Listbox>
+//   );
+// };
+
+const SongLoadingState = () => (
+  <div className="bg-white bg-opacity-5 p-4">Loading...</div>
+);
+
+const SongEmptyState = () => (
+  <div className="bg-white bg-opacity-5 p-4">No songs match.</div>
+);
+
+const SongListItem = ({
+  song,
+}: {
+  song: Song & {
+    artist: Artist;
+  };
+}) => (
+  <div className="bg-white bg-opacity-5 p-4">
+    <p>{song.title}</p>
+    <p className="text-sm">{song.artist.name}</p>
+    <p className="text-sm text-light">{song.year}</p>
+  </div>
+);
 
 export default function AllSongsListPage() {
   const [searchText, setSearchText] = useState("");
@@ -81,60 +104,28 @@ export default function AllSongsListPage() {
         </div>
 
         <div className="flex w-full">
-          <div
-            className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4"
-            onClick={() => {
-              if (!artistFilter) {
-                setArtistFilter(["Bruno Mars"]);
-              } else {
-                setArtistFilter(undefined);
-              }
-            }}
-          >
+          <div className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
             Artist
             <ChevronUpDown />
           </div>
-          <div
-            className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4"
-            onClick={() => {
-              if (!genreFilter) {
-                setGenreFilter([""]);
-              } else {
-                setGenreFilter(undefined);
-              }
-            }}
-          >
+          <div className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
             Genre
             <ChevronUpDown />
           </div>
-          <div
-            className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4"
-            onClick={() => {
-              if (!decadeFilter) {
-                setDecadeFilter(1980);
-              } else {
-                setDecadeFilter(undefined);
-              }
-            }}
-          >
+          <div className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
             Decade
             <ChevronUpDown />
           </div>
         </div>
       </div>
+
       <div className="mb-4 grid gap-y-2">
         {isLoading ? (
-          <div>Loading..</div>
+          <SongLoadingState />
         ) : !songs || songs.length === 0 ? (
-          <div>No Content.</div>
+          <SongEmptyState />
         ) : (
-          songs.map((song, i) => (
-            <div key={i} className="bg-white bg-opacity-5 p-4">
-              <p>{song.title}</p>
-              <p className="text-sm">{song.artist.name}</p>
-              <p className="text-sm text-light">{song.year}</p>
-            </div>
-          ))
+          songs.map((song) => <SongListItem key={song.id} song={song} />)
         )}
       </div>
     </PageComponent>
