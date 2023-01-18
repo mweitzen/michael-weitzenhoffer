@@ -1,14 +1,19 @@
-import ActionBar from "@/components/action-bar";
 import PageComponent from "@/components/page";
+import ActionBar from "@/components/action-bar";
+//
 import Banknotes from "@/icons/banknotes";
 import ChatBubble from "@/icons/chat-bubble";
-import CurrencyDollar from "@/icons/currency-dollar";
 import RequestIcon from "@/icons/request";
 
 export default function AppHomePage() {
   return (
     <PageComponent header="Interact Live App" seoTitle="App">
-      <div className="text-center">Coming Soon</div>
+      <div className="text-center">
+        <p>Coming Soon</p>
+        <br />
+        <br />
+        <p>Explore below</p>
+      </div>
 
       <ActionBar
         actions={[

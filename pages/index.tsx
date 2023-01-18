@@ -1,6 +1,5 @@
 import { useDisplayContext } from "@/context/display";
 import SEO from "@/components/seo";
-import { api } from "@/lib/api";
 
 const seoTitle = "Pianist";
 const header = "Michael Weitzenhoffer";
@@ -8,8 +7,7 @@ const subheader = "Pianist | Musician";
 
 export default function HomePage() {
   const { setShowMenu } = useDisplayContext();
-  const { data } = api.locations.getAll.useQuery();
-  data?.forEach((item) => console.log(JSON.stringify(item)));
+
   return (
     <>
       <SEO title={seoTitle} />

@@ -6,7 +6,17 @@ export const eventRouter = createTRPCRouter({
    * @summary GET ALL
    */
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.event.findMany();
+    return ctx.prisma.event.findMany({
+      orderBy: {
+        timeStart: "asc",
+      },
+      include: {
+        location: true,
+        performingArtist: true,
+        performingGroup: true,
+        stage: true,
+      },
+    });
   }),
 
   /**

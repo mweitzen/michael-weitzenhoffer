@@ -1,24 +1,10 @@
+import { api } from "@/lib/api";
 import { Transition, Listbox } from "@headlessui/react";
 //
 import PageComponent from "@/components/page";
 //
 import ChevronUpDown from "@/icons/chevron-up-down";
 import MagnifyingGlass from "@/icons/magnifying-glass";
-
-const songs = [
-  {
-    artist: "Miley Cyrus",
-    title: "Flowers",
-    genre: "Pop",
-    year: 2023,
-  },
-  {
-    artist: "Bruno Mars",
-    title: "When I Was Your Man",
-    genre: "Pop",
-    year: 2013,
-  },
-];
 
 const ListboxDemo = () => {
   return (
@@ -37,6 +23,8 @@ const ListboxDemo = () => {
 };
 
 export default function AllSongsListPage() {
+  const { data: songs, isLoading } = api.songs.getAll.useQuery();
+
   return (
     <PageComponent header="Michael's Repertoire" seoTitle="Repertoire">
       <div className="sticky -top-0 border-0 backdrop-blur">
@@ -64,13 +52,19 @@ export default function AllSongsListPage() {
         </div>
       </div>
       <div className="mb-4 grid gap-y-2">
-        {songs.map((song, i) => (
-          <div key={i} className="bg-white bg-opacity-5 p-4">
-            <p>{song.title}</p>
-            <p className="text-sm">{song.artist}</p>
-            <p className="text-sm text-light">{song.year}</p>
-          </div>
-        ))}
+        {isLoading ? (
+          <div>Loading..</div>
+        ) : !songs || songs.length === 0 ? (
+          <div>No Content.</div>
+        ) : (
+          songs.map((song, i) => (
+            <div key={i} className="bg-white bg-opacity-5 p-4">
+              <p>{song.title}</p>
+              <p className="text-sm">{song.artist.name}</p>
+              <p className="text-sm text-light">{song.year || "-"}</p>
+            </div>
+          ))
+        )}
       </div>
     </PageComponent>
   );

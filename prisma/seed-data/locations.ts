@@ -1,3 +1,12 @@
+/*
+ *
+ *
+ *
+ * LOCATIONS
+ *
+ *
+ *
+ */
 const locations = [
   {
     id: "cld0sdajt00009kztgzn3n5if",
@@ -35,6 +44,7 @@ const locations = [
     ],
     type: "RESTAURANT",
     insideOf: {
+      id: "cld0t0hqr00019kk57eg10b84",
       name: "The Village Shops at Los Ranchos",
       website: "https://www.shoplosranchos.com/",
       phone: "505-990-9597",
@@ -60,6 +70,7 @@ const locations = [
     },
   },
   {
+    id: "cld0t0hqr00039kk5wk6zho5j",
     name: "Cafe 6855",
     website: "https://www.cafe6855.com/",
     phone: "505-890-9150",
@@ -89,6 +100,7 @@ const locations = [
     ],
     type: "RESTAURANT",
     insideOf: {
+      id: "cld0t0hqr00019kk57eg10b84",
       name: "The Village Shops at Los Ranchos",
       address: {
         streetNumber: "6855",

@@ -7,6 +7,7 @@ import Page from "@/components/page";
 import ActionBar from "@/components/action-bar";
 //
 import ArrowUpRightOnSquare from "@/icons/arrow-up-right-on-square";
+import CalendarDays from "@/icons/calendar-days";
 
 export default function EventDetailPage() {
   let {
@@ -77,7 +78,12 @@ export default function EventDetailPage() {
             internal: false,
             href: isLoading ? "/" : event.rsvpLink || "",
             target: "_blank",
-            children: <>Reservation</>,
+            children: (
+              <>
+                <CalendarDays />
+                Reservation
+              </>
+            ),
           },
         ]}
       />

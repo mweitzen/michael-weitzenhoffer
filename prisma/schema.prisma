@@ -260,7 +260,7 @@ model SongListSongs {
 
 model Artist {
   id    String @id @default(cuid())
-  name  String
+  name  String @unique
   songs Song[]
 }
 
@@ -269,10 +269,10 @@ model Song {
   title             String
   artist            Artist          @relation(fields: [artistId], references: [id])
   artistId          String
-  year              Int
-  genre             Genre
-  root              MusicalRoot
-  mode              MusicalMode
+  year              Int?
+  genre             Genre?
+  root              MusicalRoot?
+  mode              MusicalMode?
   songlists         SongListSongs[]
   inUserRepertoire  User[]
   inGroupRepertoire Group[]
