@@ -25,6 +25,10 @@ export default function EventDetailPage() {
     eventId: eventId,
   });
 
+  if (!event) {
+    return <div>Oops.No event.</div>;
+  }
+
   return (
     <Page header="Event Detail Page" seoTitle="Event Detail">
       {isLoading ? (
@@ -37,18 +41,18 @@ export default function EventDetailPage() {
           <div>
             <p>Location:</p>
             <p>{event.location.name}</p>
-            <p>{event.stage.name}</p>
+            <p>{event.stage?.name}</p>
             <p>{event.location.address.complete}</p>
           </div>
           <div>
             <p>Date</p>
-            <p>{formatDateSimple(event.timeStart)}</p>
+            <p>{formatDateSimple(event.timeStart || new Date())}</p>
           </div>
           <div>
             <p>Time</p>
-            <p>{`${formatTimeSimple(event.timeStart)} - ${formatTimeSimple(
-              event.timeEnd
-            )}`}</p>
+            <p>{`${formatTimeSimple(
+              event.timeStart || new Date()
+            )} - ${formatTimeSimple(event.timeEnd || new Date())}`}</p>
           </div>
           <p>{event.description}</p>
         </div>
@@ -59,7 +63,7 @@ export default function EventDetailPage() {
           {
             type: "link",
             internal: false,
-            href: isLoading ? "/" : event.location.website,
+            href: isLoading ? "/" : event.location.website || "",
             target: "_blank",
             children: (
               <>
@@ -71,7 +75,7 @@ export default function EventDetailPage() {
           {
             type: "link",
             internal: false,
-            href: isLoading ? "/" : event.rsvpLink,
+            href: isLoading ? "/" : event.rsvpLink || "",
             target: "_blank",
             children: <>Reservation</>,
           },
