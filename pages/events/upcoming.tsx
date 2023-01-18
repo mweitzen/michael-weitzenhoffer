@@ -31,10 +31,10 @@ export default function UpcomingEventsPage() {
 
                 {/* day/time */}
                 <div>
-                  <p>{formatDateSimple(event.timeStart)}</p>
+                  <p>{formatDateSimple(event.timeStart || new Date())}</p>
                   <p className="text-xs font-light tracking-wide text-light">{`${formatTimeSimple(
-                    event.timeStart
-                  )} - ${formatTimeSimple(event.timeEnd)}`}</p>
+                    event.timeStart || new Date()
+                  )} - ${formatTimeSimple(event.timeEnd || new Date())}`}</p>
                 </div>
 
                 {/* location */}
