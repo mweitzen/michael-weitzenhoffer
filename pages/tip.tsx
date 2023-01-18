@@ -31,6 +31,12 @@ export default function TipPage() {
           </a>
         ))}
       </div>
+      <p className="pt-12 text-center text-xs uppercase leading-6 tracking-widest">
+        Your support is
+        <br />
+        greatly appreciated
+      </p>
+      <div className="mx-auto my-4 h-[1px] w-24 bg-white" />
     </Page>
   );
 }

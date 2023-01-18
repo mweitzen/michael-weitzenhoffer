@@ -54,19 +54,21 @@ export default function AllSongsListPage() {
         (song) =>
           song.title
             .toLowerCase()
-            .replace(" ", "")
-            .includes(searchText.toLowerCase().replace(" ", "")) ||
+            .replaceAll(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g, "")
+            .replaceAll(" ", "")
+            .includes(searchText.toLowerCase().replaceAll(" ", "")) ||
           song.artist.name
             .toLowerCase()
-            .replace(" ", "")
-            .includes(searchText.toLowerCase().replace(" ", ""))
+            .replaceAll(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g, "")
+            .replaceAll(" ", "")
+            .includes(searchText.toLowerCase().replaceAll(" ", ""))
       );
     }
   }
 
   return (
     <PageComponent header="Michael's Repertoire" seoTitle="Repertoire">
-      <div className="sticky -top-0 border-0 backdrop-blur">
+      <div className="sticky -top-0 mb-8 border border-dark-purple pt-[1px] backdrop-blur">
         <div className="relative">
           <MagnifyingGlass className="absolute top-2.5 left-2.5" />
           <input
@@ -78,7 +80,7 @@ export default function AllSongsListPage() {
           />
         </div>
 
-        <div className="mb-8 flex w-full">
+        <div className="flex w-full">
           <div
             className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4"
             onClick={() => {
@@ -130,7 +132,7 @@ export default function AllSongsListPage() {
             <div key={i} className="bg-white bg-opacity-5 p-4">
               <p>{song.title}</p>
               <p className="text-sm">{song.artist.name}</p>
-              <p className="text-sm text-light">{song.year || "-"}</p>
+              <p className="text-sm text-light">{song.year}</p>
             </div>
           ))
         )}
