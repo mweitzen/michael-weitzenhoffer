@@ -1,3 +1,5 @@
+import { useState } from "react";
+//
 import { api } from "@/lib/api";
 import { Transition, Listbox } from "@headlessui/react";
 //
@@ -23,29 +25,96 @@ const ListboxDemo = () => {
 };
 
 export default function AllSongsListPage() {
-  const { data: songs, isLoading } = api.songs.getAll.useQuery();
+  const [searchText, setSearchText] = useState("");
+  const [artistFilter, setArtistFilter] = useState<any[]>();
+  const [genreFilter, setGenreFilter] = useState<any[]>();
+  const [decadeFilter, setDecadeFilter] = useState<number>();
+
+  const { data, isLoading } = api.songs.getAll.useQuery();
+
+  let songs = data;
+
+  if (!!songs) {
+    if (!!artistFilter) {
+      songs = songs.filter((song) => artistFilter.includes(song.artist.name));
+    }
+    if (!!genreFilter) {
+      songs = songs.filter((song) => genreFilter.includes(song.genre));
+    }
+    if (!!decadeFilter) {
+      songs = songs.filter(
+        (song) =>
+          song.year &&
+          song.year >= decadeFilter &&
+          song.year <= decadeFilter + 9
+      );
+    }
+    if (!!searchText) {
+      songs = songs.filter(
+        (song) =>
+          song.title
+            .toLowerCase()
+            .replace(" ", "")
+            .includes(searchText.toLowerCase().replace(" ", "")) ||
+          song.artist.name
+            .toLowerCase()
+            .replace(" ", "")
+            .includes(searchText.toLowerCase().replace(" ", ""))
+      );
+    }
+  }
 
   return (
     <PageComponent header="Michael's Repertoire" seoTitle="Repertoire">
       <div className="sticky -top-0 border-0 backdrop-blur">
-        <div className="relative mb-1 border border-black">
+        <div className="relative">
           <MagnifyingGlass className="absolute top-2.5 left-2.5" />
           <input
             type="search"
             placeholder="Search by song or artist"
-            className="w-full border-0 bg-white bg-opacity-5 pl-10"
+            className="w-full border border-dark-purple bg-white bg-opacity-5 pl-10 focus:border-dark-purple focus:ring-0 focus:ring-offset-1 focus:ring-offset-purple-900"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
         </div>
-        <div className="mb-8 flex w-full gap-x-1">
-          <div className="flex flex-1 items-center justify-between bg-white bg-opacity-5 py-2 px-4">
+
+        <div className="mb-8 flex w-full">
+          <div
+            className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4"
+            onClick={() => {
+              if (!artistFilter) {
+                setArtistFilter(["Bruno Mars"]);
+              } else {
+                setArtistFilter(undefined);
+              }
+            }}
+          >
             Artist
             <ChevronUpDown />
           </div>
-          <div className="flex flex-1 items-center justify-between bg-white bg-opacity-5 py-2 px-4">
+          <div
+            className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4"
+            onClick={() => {
+              if (!genreFilter) {
+                setGenreFilter([""]);
+              } else {
+                setGenreFilter(undefined);
+              }
+            }}
+          >
             Genre
             <ChevronUpDown />
           </div>
-          <div className="flex flex-1 items-center justify-between bg-white bg-opacity-5 py-2 px-4">
+          <div
+            className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4"
+            onClick={() => {
+              if (!decadeFilter) {
+                setDecadeFilter(1980);
+              } else {
+                setDecadeFilter(undefined);
+              }
+            }}
+          >
             Decade
             <ChevronUpDown />
           </div>
