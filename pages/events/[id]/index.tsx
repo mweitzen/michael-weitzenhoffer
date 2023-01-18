@@ -59,7 +59,7 @@ export default function EventDetailPage(
           {
             type: "link",
             internal: false,
-            href: isLoading ? "/" : event.location.website || "",
+            href: isLoading ? "/" : (event && event.location.website) || "",
             target: "_blank",
             children: (
               <>
@@ -71,7 +71,7 @@ export default function EventDetailPage(
           {
             type: "link",
             internal: false,
-            href: isLoading ? "/" : event.rsvpLink || "",
+            href: isLoading ? "/" : (event && event.rsvpLink) || "",
             target: "_blank",
             children: (
               <>
