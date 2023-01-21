@@ -47,7 +47,7 @@ export default function ContactPage() {
       {/* CONTACT ITEMS */}
       <section className="grid gap-y-4 text-center text-sm">
         {contactItems.map((item, i) => (
-          <ContactItem item={item} />
+          <ContactItem key={i} item={item} />
         ))}
       </section>
 

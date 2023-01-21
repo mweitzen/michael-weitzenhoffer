@@ -32,7 +32,7 @@ export default function TipPage() {
       <div className="mx-auto grid w-full max-w-xs gap-4">
         {/* SERVICE LINKS */}
         {services.map((service, i) => (
-          <ServiceLink service={service} />
+          <ServiceLink key={i} service={service} />
         ))}
 
         {/* THANK YOU */}
