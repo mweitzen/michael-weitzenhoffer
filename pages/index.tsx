@@ -24,15 +24,6 @@ export default function HomePage() {
           </p>
         </button>
       </div>
-      <div className="fixed bottom-0 left-0 right-0">
-        <div className="flex items-center gap-2">
-          <MusicNoteIcon className="h-4 w-4" />
-          <p className="text-sm">Listening To: Song</p>
-        </div>
-        <div className="bg-black bg-opacity-50 py-2">
-          <AudioControls />
-        </div>
-      </div>
     </>
   );
 }

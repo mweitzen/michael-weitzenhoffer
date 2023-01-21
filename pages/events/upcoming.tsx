@@ -1,7 +1,10 @@
 import Link from "next/link";
+//
 import { api } from "@/lib/api";
 import { formatDateSimple, formatTimeSimple } from "@/lib/formatters/dates";
+//
 import Page from "@/components/page";
+//
 import ArrowUpRight from "@/icons/arrow-up-right";
 
 const EventLoadingState = () => (
@@ -24,7 +27,7 @@ const EventEmptyState = () => (
 const EventListItem = ({ event }: { event: any }) => (
   <Link href={`${event.id}`}>
     <section className="relative space-y-1 bg-white bg-opacity-5 p-4">
-      {/* title */}
+      {/* TITLE */}
       <div className="flex items-center justify-between gap-x-4">
         <h2 className="truncate text-lg font-light tracking-tight">
           {event.name}
@@ -32,7 +35,7 @@ const EventListItem = ({ event }: { event: any }) => (
         <ArrowUpRight className="shrink-0" />
       </div>
 
-      {/* day/time */}
+      {/* DAY/TIME */}
       <div>
         <p>{formatDateSimple(event.timeStart || new Date())}</p>
         <p className="text-xs font-light tracking-wide text-light">{`${formatTimeSimple(
@@ -40,7 +43,7 @@ const EventListItem = ({ event }: { event: any }) => (
         )} - ${formatTimeSimple(event.timeEnd || new Date())}`}</p>
       </div>
 
-      {/* location */}
+      {/* LOCATION */}
       <p className="text-sm">{event.location.name}</p>
     </section>
   </Link>
