@@ -8,8 +8,9 @@ import { SessionProvider } from "next-auth/react";
 //
 import { NextPageWithLayout } from "@/types";
 //
-import ThemeProvider from "@/context/theme";
-import DisplayProvider from "@/context/display";
+import ThemeContextProvider from "@/context/theme";
+import DisplayContextProvider from "@/context/display";
+import AudioContextProvider from "@/context/audio";
 //
 import PublicLayout from "@/components/layout-public";
 //
@@ -57,13 +58,15 @@ const App = ({
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <DisplayProvider>
-            <PublicLayout>
-              <Component {...pageProps} />
-            </PublicLayout>
-          </DisplayProvider>
-        </ThemeProvider>
+        <ThemeContextProvider>
+          <DisplayContextProvider>
+            <AudioContextProvider>
+              <PublicLayout>
+                <Component {...pageProps} />
+              </PublicLayout>
+            </AudioContextProvider>
+          </DisplayContextProvider>
+        </ThemeContextProvider>
       </QueryClientProvider>
     </SessionProvider>
   );

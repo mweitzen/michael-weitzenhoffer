@@ -12,7 +12,7 @@ const initialState: IThemeContext = {
 
 const ThemeContext = createContext<IThemeContext>(initialState);
 
-const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [mode, setMode] = useState(initialState.mode);
 
   function toggleMode() {
@@ -31,6 +31,6 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ThemeProvider;
+export default ThemeContextProvider;
 
 export const useThemeContext = () => useContext(ThemeContext);

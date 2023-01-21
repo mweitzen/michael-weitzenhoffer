@@ -1,6 +1,6 @@
 import { IconProps } from "@/types/icons";
 
-const Phone: React.FC<IconProps> = ({
+const PhoneIcon: React.FC<IconProps> = ({
   className = "",
   stroke = "currentColor",
   strokeWidth = 1,
@@ -23,4 +23,4 @@ const Phone: React.FC<IconProps> = ({
   );
 };
 
-export default Phone;
+export default PhoneIcon;

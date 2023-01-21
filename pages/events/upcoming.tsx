@@ -18,11 +18,6 @@ const EventLoadingState = () => (
 const EventEmptyState = () => (
   <section className="space-y-1 bg-white bg-opacity-5 p-4">
     <p className="text-lg font-light tracking-tight">No upcoming events.</p>
-    <div>
-      <div className="h-6" />
-      <div className="h-4" />
-    </div>
-    <div className="h-5" />
   </section>
 );
 
