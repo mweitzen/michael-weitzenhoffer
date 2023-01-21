@@ -26,7 +26,7 @@ const Page: React.FC<IPageComponent> = ({
         <div className={`${PUBLIC_TOPBAR_HEIGHT} shrink-0`} />
         <div className="flex flex-col overflow-hidden">
           <PageHeader header={header} />
-          <div ref={scrollableRef} className="overflow-y-scroll px-4 pb-12">
+          <div ref={scrollableRef} className="overflow-y-scroll px-4 pb-16">
             {children}
           </div>
         </div>
