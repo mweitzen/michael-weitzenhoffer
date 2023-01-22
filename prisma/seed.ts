@@ -1,3 +1,4 @@
+import recordings from "./seed-data/recordings";
 import locations from "./seed-data/locations";
 import stages from "./seed-data/stages";
 import events from "./seed-data/events";
@@ -12,6 +13,9 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
+  // await prisma.recording.createMany({
+  //   data: recordings,
+  // });
   // await prisma.city.create({
   //   data: {
   //     name: "Albuquerque",

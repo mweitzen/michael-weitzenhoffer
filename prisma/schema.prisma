@@ -44,6 +44,7 @@ model User {
   events        Event[]
   repertoire    Song[]
   songlists     SongListSongs[]
+  recordings    Recording[]
 }
 
 model Group {
@@ -234,6 +235,26 @@ model Event {
   performingArtistId  String?
   performingGroup     Group?    @relation(fields: [performingGroupId], references: [id])
   performingGroupId   String?
+}
+
+// *
+// *
+// *
+// *
+// * RECORDINGS
+// *
+// *
+// *
+// *
+model Recording {
+  id              String @id @default(cuid())
+  storageUrl      String @unique
+  storageId       String @unique
+  storageFileName String
+  user            User   @relation(fields: [userId], references: [id])
+  userId          String
+  recordingArtist String
+  recordingTitle  String
 }
 
 // *
