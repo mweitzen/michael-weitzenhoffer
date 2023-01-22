@@ -39,6 +39,9 @@ const initialState: IAudioContext = {
 const AudioContext = createContext<IAudioContext>(initialState);
 
 const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
+  /*
+   * STATE
+   */
   const [trackIndex, setTrackIndex] = useState(initialState.trackIndex);
   const [trackProgress, setTrackProgress] = useState(
     initialState.trackProgress
@@ -48,6 +51,31 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
   );
   const [trackMuted, setTrackMuted] = useState(initialState.trackMuted);
 
+  /*
+   * REFS
+   */
+  // const audioRef = useRef(new Audio("everlong.wav"));
+  // let audio: HTMLAudioElement;
+  // if (typeof window !== "undefined") {
+  //   audio = new Audio(
+  //     "https://swxahweiafzsiimikvbg.supabase.co/storage/v1/object/public/audio/Everlong%20-%20Foo%20Fighters.wav?t=2023-01-22T01%3A29%3A10.195Z"
+  //   );
+  // }
+
+  // /*
+  //  * EFFECTS
+  //  */
+  // useEffect(() => {
+  //   if (trackIsPlaying) {
+  //     audio.play();
+  //   } else {
+  //     audio.pause();
+  //   }
+  // }, [trackIsPlaying]);
+
+  /*
+   * HANDLERS
+   */
   function toPreviousTrack() {
     setTrackIndex((prevState) => {
       // One press of back button goes to start of song

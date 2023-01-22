@@ -15,7 +15,8 @@ const AudioPlayer: React.FC<IAudioPlayer> = ({ tracks }) => {
   return (
     <section className="flex w-full flex-col">
       <div className="text-center">
-        <p>Listening To: {tracks[trackIndex].title}</p>
+        <p>Listening To:</p>
+        <p> {tracks[trackIndex].title}</p>
       </div>
       <AudioControls />
       <div className="space-y-2">

@@ -11,7 +11,7 @@ import { MusicalRoot, MusicalMode } from "@prisma/client";
 // const songs = [
 //   {
 //     title: "String",
-//     artist: {connectOrCreate: {where: {name: artist,
+//     artist: {connect: {where: {name: artist,
 //     year: "Int",
 //     genre: "Genre",
 //     root: musicalRoot,
@@ -22,9 +22,8 @@ const songs = [
   {
     title: "Genie in a Bottle",
     artist: {
-      connectOrCreate: {
-        where: { name: "Christina Aguilera" },
-        create: { name: "Christina Aguilera" },
+      connect: {
+        name: "Christina Aguilera",
       },
     },
     root: MusicalRoot.F,
@@ -34,27 +33,24 @@ const songs = [
   {
     title: "Georgia",
     artist: {
-      connectOrCreate: {
-        where: { name: "Hoagy Carmichael, Various Artists, Ray Charles" },
-        create: { name: "Hoagy Carmichael, Various Artists, Ray Charles" },
+      connect: {
+        name: "Ray Charles",
       },
     },
   },
   {
     title: "Get Back",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Beatles" },
-        create: { name: "The Beatles" },
+      connect: {
+        name: "The Beatles",
       },
     },
   },
   {
     title: "Get Lucky",
     artist: {
-      connectOrCreate: {
-        where: { name: "Daft Punk, Pharell" },
-        create: { name: "Daft Punk, Pharell" },
+      connect: {
+        name: "Daft Punk, Pharell",
       },
     },
     root: MusicalRoot.B,
@@ -63,18 +59,16 @@ const songs = [
   {
     title: "Ghost",
     artist: {
-      connectOrCreate: {
-        where: { name: "Justin Beiber" },
-        create: { name: "Justin Beiber" },
+      connect: {
+        name: "Justin Beiber",
       },
     },
   },
   {
     title: "Girl",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Beatles" },
-        create: { name: "The Beatles" },
+      connect: {
+        name: "The Beatles",
       },
     },
     root: MusicalRoot.C,
@@ -83,9 +77,8 @@ const songs = [
   {
     title: "Girls Just Wanna Have Fun",
     artist: {
-      connectOrCreate: {
-        where: { name: "Cyndi Lauper" },
-        create: { name: "Cyndi Lauper" },
+      connect: {
+        name: "Cyndi Lauper",
       },
     },
     root: MusicalRoot.G,
@@ -95,33 +88,30 @@ const songs = [
   {
     title: "Give Me One Reason",
     artist: {
-      connectOrCreate: {
-        where: { name: "Tracy Chapman" },
-        create: { name: "Tracy Chapman" },
+      connect: {
+        name: "Tracy Chapman",
       },
     },
   },
   {
     title: "Glycerine",
     artist: {
-      connectOrCreate: { where: { name: "Bush" }, create: { name: "Bush" } },
+      connect: { name: "Bush" },
     },
   },
   {
     title: "Good 4 U",
     artist: {
-      connectOrCreate: {
-        where: { name: "Olivia Rodrigo" },
-        create: { name: "Olivia Rodrigo" },
+      connect: {
+        name: "Olivia Rodrigo",
       },
     },
   },
   {
     title: "Good Riddance",
     artist: {
-      connectOrCreate: {
-        where: { name: "Greenday" },
-        create: { name: "Greenday" },
+      connect: {
+        name: "Greenday",
       },
     },
     root: MusicalRoot.G,
@@ -131,9 +121,8 @@ const songs = [
   {
     title: "Goodbye Stranger",
     artist: {
-      connectOrCreate: {
-        where: { name: "Supertramp" },
-        create: { name: "Supertramp" },
+      connect: {
+        name: "Supertramp",
       },
     },
     root: MusicalRoot.A_FLAT_G_SHARP,
@@ -142,9 +131,8 @@ const songs = [
   {
     title: "Goodbye Yellow Brick Road",
     artist: {
-      connectOrCreate: {
-        where: { name: "Elton John" },
-        create: { name: "Elton John" },
+      connect: {
+        name: "Elton John",
       },
     },
     root: MusicalRoot.F,
@@ -154,9 +142,8 @@ const songs = [
   {
     title: "Gravity",
     artist: {
-      connectOrCreate: {
-        where: { name: "John Mayer" },
-        create: { name: "John Mayer" },
+      connect: {
+        name: "John Mayer",
       },
     },
     root: MusicalRoot.G,
@@ -165,9 +152,8 @@ const songs = [
   {
     title: "Gravity",
     artist: {
-      connectOrCreate: {
-        where: { name: "Sara Bareilles" },
-        create: { name: "Sara Bareilles" },
+      connect: {
+        name: "Sara Bareilles",
       },
     },
     root: MusicalRoot.G,
@@ -176,36 +162,32 @@ const songs = [
   {
     title: "Gymnopedies-1",
     artist: {
-      connectOrCreate: {
-        where: { name: "Erik Satie" },
-        create: { name: "Erik Satie" },
+      connect: {
+        name: "Erik Satie",
       },
     },
   },
   {
     title: "Gymnopedies-2",
     artist: {
-      connectOrCreate: {
-        where: { name: "Erik Satie" },
-        create: { name: "Erik Satie" },
+      connect: {
+        name: "Erik Satie",
       },
     },
   },
   {
     title: "Gymnopedies-3",
     artist: {
-      connectOrCreate: {
-        where: { name: "Erik Satie" },
-        create: { name: "Erik Satie" },
+      connect: {
+        name: "Erik Satie",
       },
     },
   },
   {
     title: "Hallelujah",
     artist: {
-      connectOrCreate: {
-        where: { name: "Jeff Buckley" },
-        create: { name: "Jeff Buckley" },
+      connect: {
+        name: "Jeff Buckley",
       },
     },
     root: MusicalRoot.C,
@@ -214,18 +196,16 @@ const songs = [
   {
     title: "Halo",
     artist: {
-      connectOrCreate: {
-        where: { name: "Beyonce" },
-        create: { name: "Beyonce" },
+      connect: {
+        name: "Beyonce",
       },
     },
   },
   {
     title: "Hands Down",
     artist: {
-      connectOrCreate: {
-        where: { name: "Dashboard Confessional" },
-        create: { name: "Dashboard Confessional" },
+      connect: {
+        name: "Dashboard Confessional",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -234,9 +214,8 @@ const songs = [
   {
     title: "Happy",
     artist: {
-      connectOrCreate: {
-        where: { name: "Pharell" },
-        create: { name: "Pharell" },
+      connect: {
+        name: "Pharell",
       },
     },
     root: MusicalRoot.F,
@@ -246,18 +225,16 @@ const songs = [
   {
     title: "Hard to Handle",
     artist: {
-      connectOrCreate: {
-        where: { name: "Otis Redding" },
-        create: { name: "Otis Redding" },
+      connect: {
+        name: "Otis Redding",
       },
     },
   },
   {
     title: "Hard to Say I'm Sorry",
     artist: {
-      connectOrCreate: {
-        where: { name: "Chicago" },
-        create: { name: "Chicago" },
+      connect: {
+        name: "Chicago",
       },
     },
     root: MusicalRoot.E,
@@ -266,18 +243,16 @@ const songs = [
   {
     title: "Havana",
     artist: {
-      connectOrCreate: {
-        where: { name: "Camila Cabello" },
-        create: { name: "Camila Cabello" },
+      connect: {
+        name: "Camila Cabello",
       },
     },
   },
   {
     title: "Have You Ever See the Rain",
     artist: {
-      connectOrCreate: {
-        where: { name: "Credence Clearwater Revival" },
-        create: { name: "Credence Clearwater Revival" },
+      connect: {
+        name: "Credence Clearwater Revival",
       },
     },
     root: MusicalRoot.C,
@@ -286,9 +261,8 @@ const songs = [
   {
     title: "Heart-Shaped Box",
     artist: {
-      connectOrCreate: {
-        where: { name: "Nirvana" },
-        create: { name: "Nirvana" },
+      connect: {
+        name: "Nirvana",
       },
     },
     root: MusicalRoot.A,
@@ -297,25 +271,23 @@ const songs = [
   {
     title: "Heartache Tonight",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Eagles" },
-        create: { name: "The Eagles" },
+      connect: {
+        name: "The Eagles",
       },
     },
   },
   {
     title: "Heat Waves",
     artist: {
-      connectOrCreate: {
-        where: { name: "Glass Animals" },
-        create: { name: "Glass Animals" },
+      connect: {
+        name: "Glass Animals",
       },
     },
   },
   {
     title: "Hello",
     artist: {
-      connectOrCreate: { where: { name: "Adele" }, create: { name: "Adele" } },
+      connect: { name: "Adele" },
     },
     root: MusicalRoot.F,
     mode: MusicalMode.MINOR,
@@ -323,9 +295,8 @@ const songs = [
   {
     title: "Hello",
     artist: {
-      connectOrCreate: {
-        where: { name: "Lionel Richie" },
-        create: { name: "Lionel Richie" },
+      connect: {
+        name: "Lionel Richie",
       },
     },
     root: MusicalRoot.A,
@@ -334,9 +305,8 @@ const songs = [
   {
     title: "Here Comes the Sun",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Beatles" },
-        create: { name: "The Beatles" },
+      connect: {
+        name: "The Beatles",
       },
     },
     root: MusicalRoot.A,
@@ -345,18 +315,16 @@ const songs = [
   {
     title: "Here Without You [[ 2000s Book ]]",
     artist: {
-      connectOrCreate: {
-        where: { name: "3 Doors Down" },
-        create: { name: "3 Doors Down" },
+      connect: {
+        name: "3 Doors Down",
       },
     },
   },
   {
     title: "Hey Jude",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Beatles" },
-        create: { name: "The Beatles" },
+      connect: {
+        name: "The Beatles",
       },
     },
     root: MusicalRoot.F,
@@ -365,7 +333,7 @@ const songs = [
   {
     title: "Hey, Soul Sister",
     artist: {
-      connectOrCreate: { where: { name: "Train" }, create: { name: "Train" } },
+      connect: { name: "Train" },
     },
     root: MusicalRoot.D,
     mode: MusicalMode.MAJOR,
@@ -374,9 +342,8 @@ const songs = [
   {
     title: "Hey There Delilah",
     artist: {
-      connectOrCreate: {
-        where: { name: "Plain White T's" },
-        create: { name: "Plain White T's" },
+      connect: {
+        name: "Plain White T's",
       },
     },
     root: MusicalRoot.D,
@@ -385,9 +352,8 @@ const songs = [
   {
     title: "Hey Ya",
     artist: {
-      connectOrCreate: {
-        where: { name: "Outkast" },
-        create: { name: "Outkast" },
+      connect: {
+        name: "Outkast",
       },
     },
     root: MusicalRoot.E,
@@ -397,9 +363,8 @@ const songs = [
   {
     title: "High and Dry",
     artist: {
-      connectOrCreate: {
-        where: { name: "Radiohead" },
-        create: { name: "Radiohead" },
+      connect: {
+        name: "Radiohead",
       },
     },
     root: MusicalRoot.G_FLAT_F_SHARP,
@@ -409,18 +374,16 @@ const songs = [
   {
     title: "Higher Ground",
     artist: {
-      connectOrCreate: {
-        where: { name: "Stevie Wonder" },
-        create: { name: "Stevie Wonder" },
+      connect: {
+        name: "Stevie Wonder",
       },
     },
   },
   {
     title: "Ho Hey",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Lumineers" },
-        create: { name: "The Lumineers" },
+      connect: {
+        name: "The Lumineers",
       },
     },
     root: MusicalRoot.C,
@@ -430,15 +393,14 @@ const songs = [
   {
     title: "Hold The Line",
     artist: {
-      connectOrCreate: { where: { name: "Toto" }, create: { name: "Toto" } },
+      connect: { name: "Toto" },
     },
   },
   {
     title: "Honesty",
     artist: {
-      connectOrCreate: {
-        where: { name: "Billy Joel" },
-        create: { name: "Billy Joel" },
+      connect: {
+        name: "Billy Joel",
       },
     },
     root: MusicalRoot.B_FLAT,
@@ -447,9 +409,8 @@ const songs = [
   {
     title: "Hooked on a Feeling",
     artist: {
-      connectOrCreate: {
-        where: { name: "Blue Swede" },
-        create: { name: "Blue Swede" },
+      connect: {
+        name: "Blue Swede",
       },
     },
     root: MusicalRoot.A_FLAT_G_SHARP,
@@ -458,9 +419,8 @@ const songs = [
   {
     title: "Hotel California",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Eagles" },
-        create: { name: "The Eagles" },
+      connect: {
+        name: "The Eagles",
       },
     },
     root: MusicalRoot.B,
@@ -470,18 +430,16 @@ const songs = [
   {
     title: "House of the Rising Sun",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Animals" },
-        create: { name: "The Animals" },
+      connect: {
+        name: "The Animals",
       },
     },
   },
   {
     title: "How Deep Is Your Love",
     artist: {
-      connectOrCreate: {
-        where: { name: "The BeeGees" },
-        create: { name: "The BeeGees" },
+      connect: {
+        name: "The BeeGees",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -491,18 +449,16 @@ const songs = [
   {
     title: "How Far I'll Go",
     artist: {
-      connectOrCreate: {
-        where: { name: "Disney, Moana" },
-        create: { name: "Disney, Moana" },
+      connect: {
+        name: "Disney, Moana",
       },
     },
   },
   {
     title: "How to Save a Life",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Fray" },
-        create: { name: "The Fray" },
+      connect: {
+        name: "The Fray",
       },
     },
     root: MusicalRoot.B_FLAT,
@@ -511,27 +467,24 @@ const songs = [
   {
     title: "I am the Highway",
     artist: {
-      connectOrCreate: {
-        where: { name: "Audioslave" },
-        create: { name: "Audioslave" },
+      connect: {
+        name: "Audioslave",
       },
     },
   },
   {
     title: "I Believe I Can Fly",
     artist: {
-      connectOrCreate: {
-        where: { name: "R Kelly" },
-        create: { name: "R Kelly" },
+      connect: {
+        name: "R Kelly",
       },
     },
   },
   {
     title: "I Can See Clearly Now",
     artist: {
-      connectOrCreate: {
-        where: { name: "Johnny Nash" },
-        create: { name: "Johnny Nash" },
+      connect: {
+        name: "Johnny Nash",
       },
     },
     root: MusicalRoot.D,
@@ -541,9 +494,8 @@ const songs = [
   {
     title: "I Can't Make You Love Me",
     artist: {
-      connectOrCreate: {
-        where: { name: "Bonnie Raitt" },
-        create: { name: "Bonnie Raitt" },
+      connect: {
+        name: "Bonnie Raitt",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -552,9 +504,8 @@ const songs = [
   {
     title: "I Don't Trust Myself",
     artist: {
-      connectOrCreate: {
-        where: { name: "John Mayer" },
-        create: { name: "John Mayer" },
+      connect: {
+        name: "John Mayer",
       },
     },
     root: MusicalRoot.A,
@@ -563,9 +514,8 @@ const songs = [
   {
     title: "I Don't Wanna Miss A Thing",
     artist: {
-      connectOrCreate: {
-        where: { name: "Aerosmith" },
-        create: { name: "Aerosmith" },
+      connect: {
+        name: "Aerosmith",
       },
     },
     root: MusicalRoot.D,
@@ -575,36 +525,32 @@ const songs = [
   {
     title: "I Feel The Earth Move",
     artist: {
-      connectOrCreate: {
-        where: { name: "Carole King" },
-        create: { name: "Carole King" },
+      connect: {
+        name: "Carole King",
       },
     },
   },
   {
     title: "I Guess That's Why They Call it the Blues",
     artist: {
-      connectOrCreate: {
-        where: { name: "Elton John" },
-        create: { name: "Elton John" },
+      connect: {
+        name: "Elton John",
       },
     },
   },
   {
     title: "I Heard It Through The Grapevine",
     artist: {
-      connectOrCreate: {
-        where: { name: "Marvin Gaye" },
-        create: { name: "Marvin Gaye" },
+      connect: {
+        name: "Marvin Gaye",
       },
     },
   },
   {
     title: "I Know the End",
     artist: {
-      connectOrCreate: {
-        where: { name: "Phoebe Bridgers" },
-        create: { name: "Phoebe Bridgers" },
+      connect: {
+        name: "Phoebe Bridgers",
       },
     },
     root: MusicalRoot.D_FLAT_C_SHARP,
@@ -613,36 +559,32 @@ const songs = [
   {
     title: "I Love Rock n Roll",
     artist: {
-      connectOrCreate: {
-        where: { name: "Joan Jett" },
-        create: { name: "Joan Jett" },
+      connect: {
+        name: "Joan Jett",
       },
     },
   },
   {
     title: "I Put a Spell On You",
     artist: {
-      connectOrCreate: {
-        where: { name: "Screamin Jay Hawkins" },
-        create: { name: "Screamin Jay Hawkins" },
+      connect: {
+        name: "Screamin Jay Hawkins",
       },
     },
   },
   {
     title: "I Say A Little Prayer",
     artist: {
-      connectOrCreate: {
-        where: { name: "Aretha Franklin" },
-        create: { name: "Aretha Franklin" },
+      connect: {
+        name: "Aretha Franklin",
       },
     },
   },
   {
     title: "I Try",
     artist: {
-      connectOrCreate: {
-        where: { name: "Macy Gray" },
-        create: { name: "Macy Gray" },
+      connect: {
+        name: "Macy Gray",
       },
     },
     root: MusicalRoot.D,
@@ -651,18 +593,16 @@ const songs = [
   {
     title: "I Wanna Dance With Somebody",
     artist: {
-      connectOrCreate: {
-        where: { name: "Whitney Houston" },
-        create: { name: "Whitney Houston" },
+      connect: {
+        name: "Whitney Houston",
       },
     },
   },
   {
     title: "I Want It That Way",
     artist: {
-      connectOrCreate: {
-        where: { name: "Backstreet Boys" },
-        create: { name: "Backstreet Boys" },
+      connect: {
+        name: "Backstreet Boys",
       },
     },
     root: MusicalRoot.G_FLAT_F_SHARP,
@@ -671,18 +611,16 @@ const songs = [
   {
     title: "I Want You Back",
     artist: {
-      connectOrCreate: {
-        where: { name: "Jackson 5" },
-        create: { name: "Jackson 5" },
+      connect: {
+        name: "Jackson 5",
       },
     },
   },
   {
     title: "I Will Follow You Into The Dark",
     artist: {
-      connectOrCreate: {
-        where: { name: "Death Cab for Cutie" },
-        create: { name: "Death Cab for Cutie" },
+      connect: {
+        name: "Death Cab for Cutie",
       },
     },
     root: MusicalRoot.D,
@@ -691,18 +629,16 @@ const songs = [
   {
     title: "I Will Survive",
     artist: {
-      connectOrCreate: {
-        where: { name: "Gloria Gayner" },
-        create: { name: "Gloria Gayner" },
+      connect: {
+        name: "Gloria Gayner",
       },
     },
   },
   {
     title: "I Wish",
     artist: {
-      connectOrCreate: {
-        where: { name: "Stevie Wonder" },
-        create: { name: "Stevie Wonder" },
+      connect: {
+        name: "Stevie Wonder",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -711,18 +647,16 @@ const songs = [
   {
     title: "I'll Make Love To You",
     artist: {
-      connectOrCreate: {
-        where: { name: "Boyz 2 Men" },
-        create: { name: "Boyz 2 Men" },
+      connect: {
+        name: "Boyz 2 Men",
       },
     },
   },
   {
     title: "I'm Not The Only One",
     artist: {
-      connectOrCreate: {
-        where: { name: "Sam Smith" },
-        create: { name: "Sam Smith" },
+      connect: {
+        name: "Sam Smith",
       },
     },
     root: MusicalRoot.F,
@@ -731,18 +665,16 @@ const songs = [
   {
     title: "I'm Still Standing",
     artist: {
-      connectOrCreate: {
-        where: { name: "Elton John" },
-        create: { name: "Elton John" },
+      connect: {
+        name: "Elton John",
       },
     },
   },
   {
     title: "I'm Yours [[ 2000s Book ]]",
     artist: {
-      connectOrCreate: {
-        where: { name: "Jason Mraz" },
-        create: { name: "Jason Mraz" },
+      connect: {
+        name: "Jason Mraz",
       },
     },
     root: MusicalRoot.B,
@@ -751,18 +683,16 @@ const songs = [
   {
     title: "I've Had the Time of My Life",
     artist: {
-      connectOrCreate: {
-        where: { name: "Dirty Dancing" },
-        create: { name: "Dirty Dancing" },
+      connect: {
+        name: "Dirty Dancing",
       },
     },
   },
   {
     title: "If I Ain't Got You",
     artist: {
-      connectOrCreate: {
-        where: { name: "Alicia Keys" },
-        create: { name: "Alicia Keys" },
+      connect: {
+        name: "Alicia Keys",
       },
     },
     root: MusicalRoot.G,
@@ -771,9 +701,8 @@ const songs = [
   {
     title: "If You Leave Me Now",
     artist: {
-      connectOrCreate: {
-        where: { name: "Chicago" },
-        create: { name: "Chicago" },
+      connect: {
+        name: "Chicago",
       },
     },
     root: MusicalRoot.B,
@@ -782,9 +711,8 @@ const songs = [
   {
     title: "If You're Gone [[ 2000s Book ]]",
     artist: {
-      connectOrCreate: {
-        where: { name: "Matchbox 20" },
-        create: { name: "Matchbox 20" },
+      connect: {
+        name: "Matchbox 20",
       },
     },
     root: MusicalRoot.A,
@@ -793,9 +721,8 @@ const songs = [
   {
     title: "Imagine",
     artist: {
-      connectOrCreate: {
-        where: { name: "John Lennon" },
-        create: { name: "John Lennon" },
+      connect: {
+        name: "John Lennon",
       },
     },
     root: MusicalRoot.C,
@@ -804,27 +731,24 @@ const songs = [
   {
     title: "In The End",
     artist: {
-      connectOrCreate: {
-        where: { name: "Linkin Park" },
-        create: { name: "Linkin Park" },
+      connect: {
+        name: "Linkin Park",
       },
     },
   },
   {
     title: "Interstate Love Song",
     artist: {
-      connectOrCreate: {
-        where: { name: "Stone Temple Pilots" },
-        create: { name: "Stone Temple Pilots" },
+      connect: {
+        name: "Stone Temple Pilots",
       },
     },
   },
   {
     title: "Into the Mystic",
     artist: {
-      connectOrCreate: {
-        where: { name: "Van Morrison" },
-        create: { name: "Van Morrison" },
+      connect: {
+        name: "Van Morrison",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -833,9 +757,8 @@ const songs = [
   {
     title: "Iris",
     artist: {
-      connectOrCreate: {
-        where: { name: "Goo Goo Dolls" },
-        create: { name: "Goo Goo Dolls" },
+      connect: {
+        name: "Goo Goo Dolls",
       },
     },
     root: MusicalRoot.B,
@@ -844,9 +767,8 @@ const songs = [
   {
     title: "Ironic",
     artist: {
-      connectOrCreate: {
-        where: { name: "Alanis Morrisette" },
-        create: { name: "Alanis Morrisette" },
+      connect: {
+        name: "Alanis Morrisette",
       },
     },
     root: MusicalRoot.G_FLAT_F_SHARP,
@@ -855,18 +777,16 @@ const songs = [
   {
     title: "Is This Love",
     artist: {
-      connectOrCreate: {
-        where: { name: "Bob Marley" },
-        create: { name: "Bob Marley" },
+      connect: {
+        name: "Bob Marley",
       },
     },
   },
   {
     title: "Isn't She Lovely",
     artist: {
-      connectOrCreate: {
-        where: { name: "Stevie Wonder" },
-        create: { name: "Stevie Wonder" },
+      connect: {
+        name: "Stevie Wonder",
       },
     },
     root: MusicalRoot.D_FLAT_C_SHARP,
@@ -875,36 +795,32 @@ const songs = [
   {
     title: "Issues",
     artist: {
-      connectOrCreate: {
-        where: { name: "Julia Michaels" },
-        create: { name: "Julia Michaels" },
+      connect: {
+        name: "Julia Michaels",
       },
     },
   },
   {
     title: "It's Been Awhile",
     artist: {
-      connectOrCreate: {
-        where: { name: "Staind" },
-        create: { name: "Staind" },
+      connect: {
+        name: "Staind",
       },
     },
   },
   {
     title: "It's Five o'Clock Somehwere",
     artist: {
-      connectOrCreate: {
-        where: { name: "Alan Jackson, Jimmy Buffet" },
-        create: { name: "Alan Jackson, Jimmy Buffet" },
+      connect: {
+        name: "Alan Jackson, Jimmy Buffet",
       },
     },
   },
   {
     title: "It's My Life",
     artist: {
-      connectOrCreate: {
-        where: { name: "Bon Jovi" },
-        create: { name: "Bon Jovi" },
+      connect: {
+        name: "Bon Jovi",
       },
     },
     root: MusicalRoot.C,
@@ -914,18 +830,16 @@ const songs = [
   {
     title: "It's Still Rock 'n Roll to Me",
     artist: {
-      connectOrCreate: {
-        where: { name: "Billy Joel" },
-        create: { name: "Billy Joel" },
+      connect: {
+        name: "Billy Joel",
       },
     },
   },
   {
     title: "It's Too Late",
     artist: {
-      connectOrCreate: {
-        where: { name: "Carole King" },
-        create: { name: "Carole King" },
+      connect: {
+        name: "Carole King",
       },
     },
     root: MusicalRoot.A,
@@ -934,9 +848,8 @@ const songs = [
   {
     title: "It's Your Love",
     artist: {
-      connectOrCreate: {
-        where: { name: "Faith Hill, Tim McGraw" },
-        create: { name: "Faith Hill, Tim McGraw" },
+      connect: {
+        name: "Faith Hill, Tim McGraw",
       },
     },
     root: MusicalRoot.G,
@@ -945,27 +858,24 @@ const songs = [
   {
     title: "Jack and Diane",
     artist: {
-      connectOrCreate: {
-        where: { name: "John Mellencamp" },
-        create: { name: "John Mellencamp" },
+      connect: {
+        name: "John Mellencamp",
       },
     },
   },
   {
     title: "Jammin",
     artist: {
-      connectOrCreate: {
-        where: { name: "Bob Marley" },
-        create: { name: "Bob Marley" },
+      connect: {
+        name: "Bob Marley",
       },
     },
   },
   {
     title: "Jar of Hearts",
     artist: {
-      connectOrCreate: {
-        where: { name: "Christina Perri" },
-        create: { name: "Christina Perri" },
+      connect: {
+        name: "Christina Perri",
       },
     },
     root: MusicalRoot.C,
@@ -975,9 +885,8 @@ const songs = [
   {
     title: "Jessie's Girl",
     artist: {
-      connectOrCreate: {
-        where: { name: "Rick Springfield" },
-        create: { name: "Rick Springfield" },
+      connect: {
+        name: "Rick Springfield",
       },
     },
     root: MusicalRoot.D,
@@ -987,9 +896,8 @@ const songs = [
   {
     title: "Just a Kiss",
     artist: {
-      connectOrCreate: {
-        where: { name: "Lady Antebellum" },
-        create: { name: "Lady Antebellum" },
+      connect: {
+        name: "Lady Antebellum",
       },
     },
     root: MusicalRoot.B,
@@ -999,9 +907,8 @@ const songs = [
   {
     title: "Just Give Me a Reason",
     artist: {
-      connectOrCreate: {
-        where: { name: "Nate Ruess, Pink" },
-        create: { name: "Nate Ruess, Pink" },
+      connect: {
+        name: "Nate Ruess, Pink",
       },
     },
     root: MusicalRoot.G,
@@ -1011,9 +918,8 @@ const songs = [
   {
     title: "Just the Two of Us",
     artist: {
-      connectOrCreate: {
-        where: { name: "Bill Withers, Grover Washington, Jr" },
-        create: { name: "Bill Withers, Grover Washington, Jr" },
+      connect: {
+        name: "Bill Withers, Grover Washington, Jr",
       },
     },
     root: MusicalRoot.D_FLAT_C_SHARP,
@@ -1022,9 +928,8 @@ const songs = [
   {
     title: "Just The Way You Are",
     artist: {
-      connectOrCreate: {
-        where: { name: "Billy Joel" },
-        create: { name: "Billy Joel" },
+      connect: {
+        name: "Billy Joel",
       },
     },
     root: MusicalRoot.D,
@@ -1033,9 +938,8 @@ const songs = [
   {
     title: "Just The Way You Are",
     artist: {
-      connectOrCreate: {
-        where: { name: "Bruno Mars" },
-        create: { name: "Bruno Mars" },
+      connect: {
+        name: "Bruno Mars",
       },
     },
     root: MusicalRoot.F,
@@ -1044,9 +948,8 @@ const songs = [
   {
     title: "Karma Police",
     artist: {
-      connectOrCreate: {
-        where: { name: "Radiohead" },
-        create: { name: "Radiohead" },
+      connect: {
+        name: "Radiohead",
       },
     },
     root: MusicalRoot.A,
@@ -1056,15 +959,14 @@ const songs = [
   {
     title: "Killer Queen",
     artist: {
-      connectOrCreate: { where: { name: "Queen" }, create: { name: "Queen" } },
+      connect: { name: "Queen" },
     },
   },
   {
     title: "Killing Me Softly",
     artist: {
-      connectOrCreate: {
-        where: { name: "Roberta Flack" },
-        create: { name: "Roberta Flack" },
+      connect: {
+        name: "Roberta Flack",
       },
     },
     root: MusicalRoot.F,
@@ -1074,16 +976,15 @@ const songs = [
   {
     title: "Kiss",
     artist: {
-      connectOrCreate: {
-        where: { name: "Prince" },
-        create: { name: "Prince" },
+      connect: {
+        name: "Prince",
       },
     },
   },
   {
     title: "Kiss From a Rose",
     artist: {
-      connectOrCreate: { where: { name: "Seal" }, create: { name: "Seal" } },
+      connect: { name: "Seal" },
     },
     root: MusicalRoot.G,
     year: 1997,
@@ -1091,9 +992,8 @@ const songs = [
   {
     title: "Kiss Me",
     artist: {
-      connectOrCreate: {
-        where: { name: "Sixpence None the Richer" },
-        create: { name: "Sixpence None the Richer" },
+      connect: {
+        name: "Sixpence None the Richer",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -1102,9 +1002,8 @@ const songs = [
   {
     title: "Kryptonite",
     artist: {
-      connectOrCreate: {
-        where: { name: "3 Doors Down" },
-        create: { name: "3 Doors Down" },
+      connect: {
+        name: "3 Doors Down",
       },
     },
     root: MusicalRoot.B,
@@ -1113,9 +1012,8 @@ const songs = [
   {
     title: "Kyoto",
     artist: {
-      connectOrCreate: {
-        where: { name: "Phoebe Bridgers" },
-        create: { name: "Phoebe Bridgers" },
+      connect: {
+        name: "Phoebe Bridgers",
       },
     },
     root: MusicalRoot.B,
@@ -1124,18 +1022,16 @@ const songs = [
   {
     title: "La Vie en Rose",
     artist: {
-      connectOrCreate: {
-        where: { name: "Edith Piaf, Various Artists" },
-        create: { name: "Edith Piaf, Various Artists" },
+      connect: {
+        name: "Edith Piaf, Various Artists",
       },
     },
   },
   {
     title: "Lady",
     artist: {
-      connectOrCreate: {
-        where: { name: "Lionel Richie" },
-        create: { name: "Lionel Richie" },
+      connect: {
+        name: "Lionel Richie",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -1144,9 +1040,8 @@ const songs = [
   {
     title: "Landside",
     artist: {
-      connectOrCreate: {
-        where: { name: "Dixie Chicks, Stevie Nix" },
-        create: { name: "Dixie Chicks, Stevie Nix" },
+      connect: {
+        name: "Dixie Chicks, Stevie Nix",
       },
     },
     root: MusicalRoot.E_FLAT,
@@ -1155,9 +1050,8 @@ const songs = [
   {
     title: "Lay Me Down",
     artist: {
-      connectOrCreate: {
-        where: { name: "Sam Smith" },
-        create: { name: "Sam Smith" },
+      connect: {
+        name: "Sam Smith",
       },
     },
     root: MusicalRoot.E,
@@ -1167,27 +1061,24 @@ const songs = [
   {
     title: "Learn to Fly",
     artist: {
-      connectOrCreate: {
-        where: { name: "Foo Fighters" },
-        create: { name: "Foo Fighters" },
+      connect: {
+        name: "Foo Fighters",
       },
     },
   },
   {
     title: "Leave the Door Open",
     artist: {
-      connectOrCreate: {
-        where: { name: "Silk Sonic" },
-        create: { name: "Silk Sonic" },
+      connect: {
+        name: "Silk Sonic",
       },
     },
   },
   {
     title: "Let It Be",
     artist: {
-      connectOrCreate: {
-        where: { name: "The Beatles" },
-        create: { name: "The Beatles" },
+      connect: {
+        name: "The Beatles",
       },
     },
     root: MusicalRoot.C,

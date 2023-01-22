@@ -7,8 +7,8 @@ const events = [
     timeStart: new Date("1/18/23 18:00"),
     timeEnd: new Date("1/18/23 21:00"),
     locationId: "cld0sdajt00009kztgzn3n5if",
-    stageId: "cld0sdaju000h9kzts38qh4v0",
-    performingArtistId: "clcvf058y00009k6kpdchxvsd",
+    stageId: "cld6q0s8600009kyj80nv7tnc",
+    performingArtistId: "cld6ouipv00009ks8nmzjxzc4",
   },
   {
     name: "Michael Weitzenhoffer @ Vernon's Speakeasy",
@@ -18,8 +18,8 @@ const events = [
     timeStart: new Date("1/25/23 18:00"),
     timeEnd: new Date("1/25/23 21:00"),
     locationId: "cld0sdajt00009kztgzn3n5if",
-    stageId: "cld0sdaju000h9kzts38qh4v0",
-    performingArtistId: "clcvf058y00009k6kpdchxvsd",
+    stageId: "cld6q0s8600009kyj80nv7tnc",
+    performingArtistId: "cld6ouipv00009ks8nmzjxzc4",
   },
   {
     name: "Brunch @ Cafe 6855",
@@ -28,8 +28,8 @@ const events = [
     timeStart: new Date("1/21/23 11:00"),
     timeEnd: new Date("1/21/23 14:00"),
     locationId: "cld0t0hqr00039kk5wk6zho5j",
-    stageId: "cld0t0hqr00049kk5cagw9dah",
-    performingArtistId: "clcvf058y00009k6kpdchxvsd",
+    stageId: "cld6q0s8600029kyj1nlov4qj",
+    performingArtistId: "cld6ouipv00009ks8nmzjxzc4",
   },
 ];
 
