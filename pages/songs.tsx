@@ -5,7 +5,6 @@ import prisma from "@/lib/prisma";
 import { Song, Artist } from "@prisma/client";
 //
 import PageComponent from "@/components/page";
-import { Transition, Listbox } from "@headlessui/react";
 //
 import ChevronUpDown from "@/icons/chevron-up-down";
 import MagnifyingGlass from "@/icons/magnifying-glass";
