@@ -13,14 +13,13 @@ import { WithChildren } from "@/types";
 
 interface IAudioContext {
   tracks: Recording[];
-  tracksLoading: boolean;
-  tracksLoaded: boolean;
   trackIndex: number;
   trackTitle: string;
   trackArtist: string;
   trackProgress: number;
   trackIsPlaying: boolean;
   trackMuted: boolean;
+  setTracks: Dispatch<SetStateAction<Recording[]>>;
   setTrackTitle: Dispatch<SetStateAction<string>>;
   setTrackArtist: Dispatch<SetStateAction<string>>;
   setTrackIndex: Dispatch<SetStateAction<number>>;
@@ -33,14 +32,13 @@ interface IAudioContext {
 
 const initialState: IAudioContext = {
   tracks: [],
-  tracksLoading: false,
-  tracksLoaded: false,
   trackIndex: 0,
   trackTitle: "",
   trackArtist: "",
   trackProgress: 0,
   trackIsPlaying: false,
   trackMuted: true,
+  setTracks: () => {},
   setTrackTitle: () => {},
   setTrackArtist: () => {},
   setTrackIndex: () => {},
@@ -57,7 +55,7 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
   /*
    * STATE
    */
-  const [currentTrackRef, setCurrentTrackRef] = useState<HTMLAudioElement>();
+  const [tracks, setTracks] = useState(initialState.tracks);
   const [trackIndex, setTrackIndex] = useState(initialState.trackIndex);
   const [trackTitle, setTrackTitle] = useState(initialState.trackTitle);
   const [trackArtist, setTrackArtist] = useState(initialState.trackArtist);
@@ -69,33 +67,10 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
   );
   const [trackMuted, setTrackMuted] = useState(initialState.trackMuted);
 
-  const {
-    data: tracks,
-    isLoading: tracksLoading,
-    isSuccess: tracksLoaded,
-  } = api.recordings.getAll.useQuery();
-
   /*
    * REFS
    */
-  // const audioRef = useRef(new Audio("everlong.wav"));
-  // let audio: HTMLAudioElement;
-  // if (typeof window !== "undefined") {
-  //   audio = new Audio(
-  //     "https://swxahweiafzsiimikvbg.supabase.co/storage/v1/object/public/audio/sample--as-it-was.wav"
-  //   );
-  // }
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     if (!!tracks) {
-  //       if (!tracksLoading) {
-  //         const audioRef = new Audio(tracks[trackIndex].storageUrl);
-  //         setCurrentTrackRef(audioRef);
-  //       }
-  //     }
-  //   }
-  // }, [tracks, tracksLoading, trackIndex]);
+  const trackRef = useRef<HTMLAudioElement>();
 
   // useEffect(() => {
   //   if (trackIsPlaying) {
@@ -143,15 +118,14 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
   return (
     <AudioContext.Provider
       value={{
-        tracks: tracks || [],
-        tracksLoading,
-        tracksLoaded,
+        tracks,
         trackIndex,
         trackTitle,
         trackArtist,
         trackProgress,
         trackIsPlaying,
         trackMuted,
+        setTracks,
         setTrackIndex,
         setTrackTitle,
         setTrackArtist,

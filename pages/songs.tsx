@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { InferGetStaticPropsType } from "next";
 import { Transition, Listbox } from "@headlessui/react";
 //
-import { api } from "@/lib/api";
+import prisma from "@/lib/prisma";
 import { Song, Artist } from "@prisma/client";
 //
 import PageComponent from "@/components/page";
@@ -25,10 +26,6 @@ import MagnifyingGlass from "@/icons/magnifying-glass";
 //   );
 // };
 
-const SongLoadingState = () => (
-  <div className="bg-white bg-opacity-5 p-4">Loading...</div>
-);
-
 const SongEmptyState = () => (
   <div className="bg-white bg-opacity-5 p-4">No songs match.</div>
 );
@@ -47,15 +44,13 @@ const SongListItem = ({
   </div>
 );
 
-export default function AllSongsListPage() {
+export default function AllSongsListPage({
+  songs,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [searchText, setSearchText] = useState("");
   const [artistFilter, setArtistFilter] = useState<any[]>();
   const [genreFilter, setGenreFilter] = useState<any[]>();
   const [decadeFilter, setDecadeFilter] = useState<number>();
-
-  const { data, isLoading } = api.songs.getAll.useQuery();
-
-  let songs = data;
 
   if (!!songs) {
     if (!!artistFilter) {
@@ -120,9 +115,7 @@ export default function AllSongsListPage() {
       </div>
 
       <div className="mb-4 grid gap-y-2">
-        {isLoading ? (
-          <SongLoadingState />
-        ) : !songs || songs.length === 0 ? (
+        {!songs || songs.length === 0 ? (
           <SongEmptyState />
         ) : (
           songs.map((song) => <SongListItem key={song.id} song={song} />)
@@ -130,4 +123,23 @@ export default function AllSongsListPage() {
       </div>
     </PageComponent>
   );
+}
+
+export async function getStaticProps() {
+  const songs = await prisma.song.findMany({
+    orderBy: {
+      artist: {
+        name: "asc",
+      },
+    },
+    include: {
+      artist: true,
+    },
+  });
+
+  return {
+    props: {
+      songs,
+    },
+  };
 }

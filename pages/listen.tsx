@@ -1,19 +1,15 @@
+import { InferGetStaticPropsType } from "next";
+//
 import { useAudioContext } from "@/context/audio";
+import { Recording } from "@prisma/client";
 //
 import PageComponent from "@/components/page";
 import AudioControls from "@/components/audio-controls";
 //
 import SpeakerSoundWaveIcon from "@/icons/speaker-sound-wave";
 import SpeakerMuteIcon from "@/icons/speaker-x-mark";
-import { Recording } from "@prisma/client";
-
-const RecordingsLoadingState = () => (
-  <div className="bg-white bg-opacity-5 p-4">Loading...</div>
-);
-
-const RecordingsEmptyState = () => (
-  <div className="bg-white bg-opacity-5 p-4">No songs match.</div>
-);
+import prisma from "@/lib/prisma";
+import { useEffect } from "react";
 
 const RecordingItem = ({
   track,
@@ -51,9 +47,15 @@ const RecordingItem = ({
   );
 };
 
-export default function RecordingsPage() {
-  const { tracks, tracksLoading, trackIndex, trackIsPlaying, trackMuted } =
+export default function RecordingsPage({
+  tracks,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { trackIndex, trackIsPlaying, trackMuted, setTracks } =
     useAudioContext();
+
+  useEffect(() => {
+    setTracks(tracks);
+  }, []);
 
   const playbackText = !trackIsPlaying
     ? `Press Play to listen to:`
@@ -74,15 +76,21 @@ export default function RecordingsPage() {
         )}
         <AudioControls />
         <div className="space-y-2">
-          {tracksLoading ? (
-            <RecordingsLoadingState />
-          ) : (
-            tracks.map((track, i) => {
-              return <RecordingItem key={i} track={track} index={i} />;
-            })
-          )}
+          {tracks.map((track, i) => {
+            return <RecordingItem key={i} track={track} index={i} />;
+          })}
         </div>
       </section>
     </PageComponent>
   );
+}
+
+export async function getStaticProps() {
+  const tracks = await prisma.recording.findMany();
+
+  return {
+    props: {
+      tracks,
+    },
+  };
 }
