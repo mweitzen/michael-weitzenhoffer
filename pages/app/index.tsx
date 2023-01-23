@@ -8,7 +8,7 @@ import RequestIcon from "@/icons/request";
 export default function AppHomePage() {
   return (
     <PageComponent header="Interact Live App" seoTitle="App">
-      <div className="space-y-8">
+      <div className="space-y-8 pb-8">
         {/* NOW PLAYING */}
         <div className="space-y-4">
           <div>

@@ -1,52 +1,47 @@
 import { useState } from "react";
 import { InferGetStaticPropsType } from "next";
-import { Transition, Listbox } from "@headlessui/react";
 //
 import prisma from "@/lib/prisma";
 import { Song, Artist } from "@prisma/client";
 //
 import PageComponent from "@/components/page";
+import { Transition, Listbox } from "@headlessui/react";
 //
 import ChevronUpDown from "@/icons/chevron-up-down";
 import MagnifyingGlass from "@/icons/magnifying-glass";
 
-// const ListboxDemo = () => {
-//   return (
-//     <Listbox as="div" className="relative flex-1">
-//       <Listbox.Button className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
-//         Artist
-//         <ChevronUpDown className="pointer-events-none" />
-//       </Listbox.Button>
-//       <Transition>
-//         <Listbox.Options className="absolute mt-1 max-h-60 overflow-auto bg-white bg-opacity-5 py-2 px-4 text-sm ring-1 ring-purple-900">
-//           <Listbox.Option value={"deeznutz"}>Suxk Deez Nuts</Listbox.Option>
-//         </Listbox.Options>
-//       </Transition>
-//     </Listbox>
-//   );
-// };
+/*
+ *
+ * GET STATIC PROPS
+ *
+ */
+type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const SongEmptyState = () => (
-  <div className="bg-white bg-opacity-5 p-4">No songs match.</div>
-);
+export async function getStaticProps() {
+  const songs = await prisma.song.findMany({
+    orderBy: {
+      artist: {
+        name: "asc",
+      },
+    },
+    include: {
+      artist: true,
+    },
+  });
 
-const SongListItem = ({
-  song,
-}: {
-  song: Song & {
-    artist: Artist;
+  return {
+    props: {
+      songs,
+    },
   };
-}) => (
-  <div className="bg-white bg-opacity-5 p-4">
-    <p>{song.title}</p>
-    <p className="text-sm">{song.artist.name}</p>
-    <p className="text-sm text-light">{song.year}</p>
-  </div>
-);
+}
 
-export default function AllSongsListPage({
-  songs,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+/*
+ *
+ * PAGE
+ *
+ */
+export default function AllSongsListPage({ songs }: StaticProps) {
   const [searchText, setSearchText] = useState("");
   const [artistFilter, setArtistFilter] = useState<any[]>();
   const [genreFilter, setGenreFilter] = useState<any[]>();
@@ -86,7 +81,8 @@ export default function AllSongsListPage({
 
   return (
     <PageComponent header="Michael's Repertoire" seoTitle="Repertoire">
-      <div className="sticky -top-0 mb-8 border border-dark-purple pt-[1px] backdrop-blur">
+      {/* SEARCH / FILTERS */}
+      <div className="sticky -top-0 mb-8 border border-dark-purple backdrop-blur">
         <div className="relative">
           <MagnifyingGlass className="absolute top-2.5 left-2.5" />
           <input
@@ -114,6 +110,7 @@ export default function AllSongsListPage({
         </div>
       </div>
 
+      {/* SONG LISTINGS */}
       <div className="mb-4 grid gap-y-2">
         {!songs || songs.length === 0 ? (
           <SongEmptyState />
@@ -125,21 +122,42 @@ export default function AllSongsListPage({
   );
 }
 
-export async function getStaticProps() {
-  const songs = await prisma.song.findMany({
-    orderBy: {
-      artist: {
-        name: "asc",
-      },
-    },
-    include: {
-      artist: true,
-    },
-  });
+/*
+ *
+ * COMPONENTS
+ *
+ */
 
-  return {
-    props: {
-      songs,
-    },
+const SongEmptyState = () => (
+  <div className="bg-white bg-opacity-5 p-4">No songs match</div>
+);
+
+const SongListItem = ({
+  song,
+}: {
+  song: Song & {
+    artist: Artist;
   };
-}
+}) => (
+  <div className="bg-white bg-opacity-5 p-4">
+    <p>{song.title}</p>
+    <p className="text-sm">{song.artist.name}</p>
+    <p className="text-sm text-light">{song.year}</p>
+  </div>
+);
+
+// const ListboxDemo = () => {
+//   return (
+//     <Listbox as="div" className="relative flex-1">
+//       <Listbox.Button className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
+//         Artist
+//         <ChevronUpDown className="pointer-events-none" />
+//       </Listbox.Button>
+//       <Transition>
+//         <Listbox.Options className="absolute mt-1 max-h-60 overflow-auto bg-white bg-opacity-5 py-2 px-4 text-sm ring-1 ring-purple-900">
+//           <Listbox.Option value={"deeznutz"}>Suxk Deez Nuts</Listbox.Option>
+//         </Listbox.Options>
+//       </Transition>
+//     </Listbox>
+//   );
+// };

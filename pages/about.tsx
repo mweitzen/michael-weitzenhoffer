@@ -4,7 +4,6 @@ import PageComponent from "@/components/page";
 export default function AboutPage() {
   return (
     <PageComponent header="About Michael" seoTitle="About">
-      {/* ABOUT TEXT */}
       <section className="space-y-8 px-4 leading-loose">
         <p>
           Originally from Ohio, Michael Weitzenhoffer is a piano player based in
@@ -20,7 +19,6 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* CONTACT LINK */}
       <Link href="/contact">
         <div className="mt-8 w-full bg-white bg-opacity-5 py-8 text-center uppercase tracking-widest">
           Go to contact page

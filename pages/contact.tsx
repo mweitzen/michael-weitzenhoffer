@@ -27,6 +27,63 @@ const contactItems = [
   },
 ];
 
+const actionBarItems: any = [
+  {
+    type: "link",
+    href: `tel:${phoneHref}`,
+    children: (
+      <>
+        <Phone />
+        Call Me
+      </>
+    ),
+  },
+  {
+    type: "link",
+    href: `sms:${phoneHref}`,
+    children: (
+      <>
+        <ChatBubble />
+        Text Me
+      </>
+    ),
+  },
+  {
+    type: "link",
+    href: `mailto:${email}`,
+    children: (
+      <>
+        <Envelope />
+        Email Me
+      </>
+    ),
+  },
+];
+
+/*
+ *
+ * PAGE
+ *
+ */
+export default function ContactPage() {
+  return (
+    <Page header="Contact Michael" seoTitle="Contact">
+      <section className="grid gap-y-4 text-center text-sm">
+        {contactItems.map((item, i) => (
+          <ContactItem key={i} item={item} />
+        ))}
+      </section>
+
+      <ActionBar actions={actionBarItems} />
+    </Page>
+  );
+}
+
+/*
+ *
+ * COMPONENTS
+ *
+ */
 const ContactItem = ({ item }: { item: (typeof contactItems)[0] }) => (
   <div className="space-y-1">
     <p className="text-sm tracking-wide">{item.name}</p>
@@ -38,54 +95,3 @@ const ContactItem = ({ item }: { item: (typeof contactItems)[0] }) => (
     </p>
   </div>
 );
-
-const SocialLink = () => null;
-
-export default function ContactPage() {
-  return (
-    <Page header="Contact Michael" seoTitle="Contact">
-      {/* CONTACT ITEMS */}
-      <section className="grid gap-y-4 text-center text-sm">
-        {contactItems.map((item, i) => (
-          <ContactItem key={i} item={item} />
-        ))}
-      </section>
-
-      {/* CONTACT BAR */}
-      <ActionBar
-        actions={[
-          {
-            type: "link",
-            href: `tel:${phoneHref}`,
-            children: (
-              <>
-                <Phone />
-                Call Me
-              </>
-            ),
-          },
-          {
-            type: "link",
-            href: `sms:${phoneHref}`,
-            children: (
-              <>
-                <ChatBubble />
-                Text Me
-              </>
-            ),
-          },
-          {
-            type: "link",
-            href: `mailto:${email}`,
-            children: (
-              <>
-                <Envelope />
-                Email Me
-              </>
-            ),
-          },
-        ]}
-      />
-    </Page>
-  );
-}

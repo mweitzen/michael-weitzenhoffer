@@ -1,7 +1,5 @@
 import { useDisplayContext } from "@/context/display";
 import SEO from "@/components/seo";
-import AudioControls from "@/components/audio-controls";
-import MusicNoteIcon from "@/icons/music-note";
 
 const seoTitle = "Pianist";
 const header = "Michael Weitzenhoffer";

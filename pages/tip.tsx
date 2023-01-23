@@ -15,17 +15,6 @@ const services = [
   },
 ];
 
-const ServiceLink = ({ service }: { service: (typeof services)[0] }) => (
-  <a
-    href={service.path}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-full bg-white bg-opacity-5 py-8 text-center"
-  >
-    {service.name}
-  </a>
-);
-
 export default function TipPage() {
   return (
     <Page header="Send a Tip" seoTitle="Send Tip">
@@ -46,3 +35,14 @@ export default function TipPage() {
     </Page>
   );
 }
+
+const ServiceLink = ({ service }: { service: (typeof services)[0] }) => (
+  <a
+    href={service.path}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full bg-white bg-opacity-5 py-8 text-center"
+  >
+    {service.name}
+  </a>
+);

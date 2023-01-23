@@ -1,10 +1,9 @@
 import NextAuth from "next-auth/next";
+import GoogleProvider from "next-auth/providers/google";
 import { type NextAuthOptions } from "next-auth";
 //
-import GoogleProvider from "next-auth/providers/google";
-//
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 /*
  *
@@ -22,13 +21,13 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET)
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   adapter: PrismaAdapter(prisma),
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ user }) {
       const allowedDomains = ["@weitzenhoffer.com"];
       const userDomain = user && user.email?.slice(user.email?.indexOf("@"));
 

@@ -1,12 +1,11 @@
 import Link from "next/link";
+import routes from "@/lib/routes";
 //
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-//
 import { useDisplayContext } from "@/context/display";
 //
-import routes from "@/lib/routes";
-import Close from "@/icons/close";
+import CloseIcon from "@/icons/close";
 
 const PublicMenu = () => {
   const { showMenu, setShowMenu } = useDisplayContext();
@@ -36,7 +35,7 @@ const PublicMenu = () => {
             <div className="absolute flex h-16 w-full flex-row-reverse items-center justify-between px-4 md:px-6">
               {/* CLOSE */}
               <button onClick={closeMenu}>
-                <Close className="h-6 w-6" />
+                <CloseIcon className="h-6 w-6" />
               </button>
 
               {/* LOGO */}
@@ -79,14 +78,14 @@ const PublicMenu = () => {
               {/* INTERACT LIVE */}
               <Link
                 href={routes.special.app.path}
-                className="mb-4 bg-black bg-opacity-90 py-6 px-16 text-lg font-medium uppercase tracking-widest"
+                className="mb-4 bg-black bg-opacity-30 py-6 px-16 text-lg font-medium uppercase tracking-widest backdrop-blur"
                 onClick={closeMenu}
               >
-                Interact Live
+                Go to Live App
               </Link>
 
               {/* NAVIGATION */}
-              <div className="grid bg-black bg-opacity-30 py-4">
+              <div className="grid bg-black bg-opacity-30 py-4 backdrop-blur">
                 {routes.public.map((route, i) => (
                   <Link
                     key={i}

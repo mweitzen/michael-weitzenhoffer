@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { InferGetStaticPropsType } from "next";
 //
 import prisma from "@/lib/prisma";
-import { useAudioContext } from "@/context/audio";
 import { Recording } from "@prisma/client";
+//
+import { useAudioContext } from "@/context/audio";
 //
 import PageComponent from "@/components/page";
 import AudioControls from "@/components/audio-controls";
@@ -12,45 +13,29 @@ import SpeakerSoundWaveIcon from "@/icons/speaker-sound-wave";
 import SpeakerMuteIcon from "@/icons/speaker-x-mark";
 import MusicNoteIcon from "@/icons/music-note";
 
-const RecordingItem = ({
-  track,
-  index: i,
-}: {
-  track: Recording;
-  index: number;
-}) => {
-  const { trackIndex, trackIsPlaying, trackMuted, loadTrack } =
-    useAudioContext();
+/*
+ *
+ * GET STATIC PROPS
+ *
+ */
+type StaticProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-  return (
-    <button
-      className="flex w-full items-center justify-between bg-white bg-opacity-5 p-4 text-left"
-      onClick={() => {
-        if (trackIndex !== i) {
-          loadTrack(i);
-        }
-      }}
-    >
-      <span>
-        <p className="text-lg">{track.recordingTitle}</p>
-        <p>{track.recordingArtist}</p>
-      </span>
-      {i === trackIndex ? (
-        <span>
-          {trackMuted || !trackIsPlaying ? (
-            <SpeakerMuteIcon />
-          ) : (
-            <SpeakerSoundWaveIcon />
-          )}
-        </span>
-      ) : null}
-    </button>
-  );
-};
+export async function getStaticProps() {
+  const tracks = await prisma.recording.findMany();
 
-export default function RecordingsPage({
-  tracks,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+  return {
+    props: {
+      tracks,
+    },
+  };
+}
+
+/*
+ *
+ * PAGE
+ *
+ */
+export default function RecordingsPage({ tracks }: StaticProps) {
   const { trackIndex, trackIsPlaying, trackMuted, setTracks } =
     useAudioContext();
 
@@ -76,10 +61,12 @@ export default function RecordingsPage({
             </div>
           </div>
         ) : null}
+
         <AudioControls />
+
         <div className="space-y-2">
           {tracks.map((track, i) => {
-            return <RecordingItem key={i} track={track} index={i} />;
+            return <TrackListing key={i} track={track} index={i} />;
           })}
         </div>
       </section>
@@ -87,12 +74,40 @@ export default function RecordingsPage({
   );
 }
 
-export async function getStaticProps() {
-  const tracks = await prisma.recording.findMany();
-
-  return {
-    props: {
-      tracks,
-    },
-  };
+/*
+ *
+ * COMPONENTS
+ *
+ */
+interface ITrackListing {
+  track: Recording;
+  index: number;
 }
+
+const TrackListing: React.FC<ITrackListing> = ({ track, index: i }) => {
+  const { trackIndex, trackIsPlaying, trackMuted, loadTrack } =
+    useAudioContext();
+
+  const trackCurrentlySelected = trackIndex === i;
+
+  return (
+    <button
+      className="flex w-full items-center justify-between bg-white bg-opacity-5 p-4 text-left"
+      onClick={() => (!trackCurrentlySelected ? loadTrack(i) : null)}
+    >
+      <span>
+        <p className="text-lg">{track.recordingTitle}</p>
+        <p>{track.recordingArtist}</p>
+      </span>
+      {trackCurrentlySelected ? (
+        <span>
+          {trackMuted || !trackIsPlaying ? (
+            <SpeakerMuteIcon />
+          ) : (
+            <SpeakerSoundWaveIcon />
+          )}
+        </span>
+      ) : null}
+    </button>
+  );
+};
