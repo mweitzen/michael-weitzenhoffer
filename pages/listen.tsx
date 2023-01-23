@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { InferGetStaticPropsType } from "next";
 //
+import prisma from "@/lib/prisma";
 import { useAudioContext } from "@/context/audio";
 import { Recording } from "@prisma/client";
 //
@@ -8,8 +10,6 @@ import AudioControls from "@/components/audio-controls";
 //
 import SpeakerSoundWaveIcon from "@/icons/speaker-sound-wave";
 import SpeakerMuteIcon from "@/icons/speaker-x-mark";
-import prisma from "@/lib/prisma";
-import { useEffect } from "react";
 import MusicNoteIcon from "@/icons/music-note";
 
 const RecordingItem = ({
@@ -56,7 +56,7 @@ export default function RecordingsPage({
 
   useEffect(() => {
     setTracks(tracks);
-  }, []);
+  }, [tracks, setTracks]);
 
   const playbackText = !trackIsPlaying
     ? `Press Play to listen to:`
