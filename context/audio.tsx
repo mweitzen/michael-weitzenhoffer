@@ -20,7 +20,7 @@ interface IAudioContext {
   trackIsPlaying: boolean;
   trackMuted: boolean;
   setTracks: Dispatch<SetStateAction<Recording[]>>;
-  setTrackIndex: Dispatch<SetStateAction<number>>;
+  loadTrack: (newTrackIndex: number) => void;
   toggleTrackMuted: () => void;
   toPreviousTrack: () => void;
   toNextTrack: () => void;
@@ -37,7 +37,7 @@ const initialState: IAudioContext = {
   trackIsPlaying: false,
   trackMuted: false,
   setTracks: () => {},
-  setTrackIndex: () => {},
+  loadTrack: () => {},
   toggleTrackMuted: () => {},
   toPreviousTrack: () => {},
   toNextTrack: () => {},
@@ -70,11 +70,11 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      trackRef.current = new Audio(
-        "https://swxahweiafzsiimikvbg.supabase.co/storage/v1/object/public/audio/sample--everlong.wav?t=2023-01-23T03%3A38%3A19.970Z"
-      );
+      if (tracks.length !== 0) {
+        trackRef.current = new Audio(tracks[0].storageUrl);
+      }
     }
-  }, []);
+  }, [tracks]);
 
   /*
    * HANDLERS
@@ -94,56 +94,52 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
     }
   }
 
-  function stopTrack() {
-    if (!!trackRef.current) {
-      setTrackIsPlaying(false);
-      trackRef.current.pause();
-      trackRef.current.currentTime = 0;
-    }
-  }
+  // function stopTrack() {
+  //   if (!!trackRef.current) {
+  //     setTrackIsPlaying(false);
+  //     trackRef.current.pause();
+  //     trackRef.current.currentTime = 0;
+  //   }
+  // }
 
   function toggleTrackMuted() {
     if (!!trackRef.current) {
       if (trackMuted) {
-        trackRef.current.volume = 1;
+        trackRef.current.muted = false;
       } else {
-        trackRef.current.volume = 0;
+        trackRef.current.muted = true;
       }
       setTrackMuted((prevState) => !prevState);
     }
   }
 
-  function toPreviousTrack() {
-    // tracks[trackIndex]
-    setTrackIndex((prevState) => {
-      if (!!tracks) {
-        // One press of back button goes to start of song
-        if (trackProgress > 3) {
-          return prevState;
-        }
-        // automatically loop the player around
-        if (prevState === 0) {
-          return tracks.length - 1;
-        }
-        // return previous track
-        return prevState - 1;
+  function loadTrack(newTrackIndex: number) {
+    if (!!trackRef.current) {
+      const wasPlaying = trackIsPlaying;
+      pauseTrack();
+      const newTrackUrl = tracks[newTrackIndex].storageUrl;
+      trackRef.current.src = newTrackUrl;
+      setTrackIndex(newTrackIndex);
+      if (wasPlaying) {
+        playTrack();
       }
-      return prevState;
-    });
+    }
+  }
+
+  function toPreviousTrack() {
+    // automatically loop the player around
+    const previousTrackIndex =
+      trackIndex === 0 ? tracks.length - 1 : trackIndex - 1;
+
+    loadTrack(previousTrackIndex);
   }
 
   function toNextTrack() {
-    setTrackIndex((prevState) => {
-      if (!!tracks) {
-        // automatically loop the player when playing last song
-        if (prevState === tracks.length - 1) {
-          return 0;
-        }
-        // return next track track
-        return prevState + 1;
-      }
-      return prevState;
-    });
+    // automatically loop the player around
+    const nextTrackIndex =
+      trackIndex === tracks.length - 1 ? 0 : trackIndex + 1;
+
+    loadTrack(nextTrackIndex);
   }
 
   return (
@@ -157,10 +153,10 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
         trackIsPlaying,
         trackMuted,
         setTracks,
-        setTrackIndex,
         toggleTrackMuted,
         toPreviousTrack,
         toNextTrack,
+        loadTrack,
         playTrack,
         pauseTrack,
       }}

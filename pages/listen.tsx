@@ -19,7 +19,7 @@ const RecordingItem = ({
   track: Recording;
   index: number;
 }) => {
-  const { trackIndex, trackIsPlaying, trackMuted, setTrackIndex } =
+  const { trackIndex, trackIsPlaying, trackMuted, loadTrack } =
     useAudioContext();
 
   return (
@@ -27,7 +27,7 @@ const RecordingItem = ({
       className="flex w-full items-center justify-between bg-white bg-opacity-5 p-4 text-left"
       onClick={() => {
         if (trackIndex !== i) {
-          setTrackIndex(i);
+          loadTrack(i);
         }
       }}
     >
@@ -51,14 +51,8 @@ const RecordingItem = ({
 export default function RecordingsPage({
   tracks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const {
-    playTrack,
-    pauseTrack,
-    trackIndex,
-    trackIsPlaying,
-    trackMuted,
-    setTracks,
-  } = useAudioContext();
+  const { trackIndex, trackIsPlaying, trackMuted, setTracks } =
+    useAudioContext();
 
   useEffect(() => {
     setTracks(tracks);
@@ -72,18 +66,16 @@ export default function RecordingsPage({
 
   return (
     <PageComponent header="Listen to Michael" seoTitle="Listen">
-      <section className="flex w-full flex-col">
-        {tracks.length === 0 ? (
-          <>No tracks.</>
-        ) : (
+      <section className="flex w-full flex-col gap-2">
+        {tracks.length !== 0 ? (
           <div className="flex items-center gap-4">
             <MusicNoteIcon className={trackIsPlaying ? "animate-pulse" : ""} />
-            <div className="py-2">
+            <div className="space-y-1">
               <p>{playbackText}</p>
               <p className="text-lg"> {tracks[trackIndex].recordingTitle}</p>
             </div>
           </div>
-        )}
+        ) : null}
         <AudioControls />
         <div className="space-y-2">
           {tracks.map((track, i) => {
