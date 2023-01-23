@@ -37,10 +37,11 @@ const AudioControls = () => {
   const {
     trackIsPlaying,
     trackMuted,
-    setTrackIsPlaying,
     toNextTrack,
     toPreviousTrack,
-    setTrackMuted,
+    toggleTrackMuted,
+    playTrack,
+    pauseTrack,
   } = useAudioContext();
 
   return (
@@ -49,29 +50,20 @@ const AudioControls = () => {
         <BackwardIcon />
       </AudioControl>
       {trackIsPlaying ? (
-        <AudioControl
-          handleClick={() => setTrackIsPlaying(false)}
-          ariaLabel="Pause"
-        >
+        <AudioControl handleClick={pauseTrack} ariaLabel="Pause">
           <PauseIcon />
         </AudioControl>
       ) : (
-        <AudioControl
-          handleClick={() => setTrackIsPlaying(true)}
-          ariaLabel="Play"
-        >
+        <AudioControl handleClick={playTrack} ariaLabel="Play">
           <PlayIcon />
         </AudioControl>
       )}
       {trackMuted ? (
-        <AudioControl
-          handleClick={() => setTrackMuted(false)}
-          ariaLabel="Un-Mute"
-        >
+        <AudioControl handleClick={toggleTrackMuted} ariaLabel="Un-Mute">
           <SpeakerMuteIcon />
         </AudioControl>
       ) : (
-        <AudioControl handleClick={() => setTrackMuted(true)} ariaLabel="Mute">
+        <AudioControl handleClick={toggleTrackMuted} ariaLabel="Mute">
           <SpeakerSoundWaveIcon />
         </AudioControl>
       )}

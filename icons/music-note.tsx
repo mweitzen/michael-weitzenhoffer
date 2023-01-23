@@ -8,9 +8,10 @@ const MusicNoteIcon: React.FC<IconProps> = ({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
+      fill="white"
+      fillOpacity={0.1}
       viewBox="0 0 24 24"
-      className={`h-5 w-5 ${className}`}
+      className={`h-20 w-20 ${className}`}
     >
       <path
         fillRule="evenodd"

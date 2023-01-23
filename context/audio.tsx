@@ -7,9 +7,9 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { api } from "@/lib/api";
-import { Recording } from "@prisma/client";
+
 import { WithChildren } from "@/types";
+import { Recording } from "@prisma/client";
 
 interface IAudioContext {
   tracks: Recording[];
@@ -20,14 +20,12 @@ interface IAudioContext {
   trackIsPlaying: boolean;
   trackMuted: boolean;
   setTracks: Dispatch<SetStateAction<Recording[]>>;
-  setTrackTitle: Dispatch<SetStateAction<string>>;
-  setTrackArtist: Dispatch<SetStateAction<string>>;
   setTrackIndex: Dispatch<SetStateAction<number>>;
-  setTrackProgress: Dispatch<SetStateAction<number>>;
-  setTrackIsPlaying: Dispatch<SetStateAction<boolean>>;
-  setTrackMuted: Dispatch<SetStateAction<boolean>>;
+  toggleTrackMuted: () => void;
   toPreviousTrack: () => void;
   toNextTrack: () => void;
+  playTrack: () => void;
+  pauseTrack: () => void;
 }
 
 const initialState: IAudioContext = {
@@ -37,16 +35,14 @@ const initialState: IAudioContext = {
   trackArtist: "",
   trackProgress: 0,
   trackIsPlaying: false,
-  trackMuted: true,
+  trackMuted: false,
   setTracks: () => {},
-  setTrackTitle: () => {},
-  setTrackArtist: () => {},
   setTrackIndex: () => {},
-  setTrackProgress: () => {},
-  setTrackIsPlaying: () => {},
-  setTrackMuted: () => {},
+  toggleTrackMuted: () => {},
   toPreviousTrack: () => {},
   toNextTrack: () => {},
+  playTrack: () => {},
+  pauseTrack: () => {},
 };
 
 const AudioContext = createContext<IAudioContext>(initialState);
@@ -72,18 +68,53 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
    */
   const trackRef = useRef<HTMLAudioElement>();
 
-  // useEffect(() => {
-  //   if (trackIsPlaying) {
-  //     audio.play();
-  //   } else {
-  //     audio.pause();
-  //   }
-  // }, [trackIsPlaying]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      trackRef.current = new Audio(
+        "https://swxahweiafzsiimikvbg.supabase.co/storage/v1/object/public/audio/sample--everlong.wav?t=2023-01-23T03%3A38%3A19.970Z"
+      );
+    }
+  }, []);
 
   /*
    * HANDLERS
    */
+
+  function playTrack() {
+    if (!!trackRef.current) {
+      setTrackIsPlaying(true);
+      trackRef.current.play();
+    }
+  }
+
+  function pauseTrack() {
+    if (!!trackRef.current) {
+      setTrackIsPlaying(false);
+      trackRef.current.pause();
+    }
+  }
+
+  function stopTrack() {
+    if (!!trackRef.current) {
+      setTrackIsPlaying(false);
+      trackRef.current.pause();
+      trackRef.current.currentTime = 0;
+    }
+  }
+
+  function toggleTrackMuted() {
+    if (!!trackRef.current) {
+      if (trackMuted) {
+        trackRef.current.volume = 1;
+      } else {
+        trackRef.current.volume = 0;
+      }
+      setTrackMuted((prevState) => !prevState);
+    }
+  }
+
   function toPreviousTrack() {
+    // tracks[trackIndex]
     setTrackIndex((prevState) => {
       if (!!tracks) {
         // One press of back button goes to start of song
@@ -127,13 +158,11 @@ const AudioContextProvider: React.FC<WithChildren> = ({ children }) => {
         trackMuted,
         setTracks,
         setTrackIndex,
-        setTrackTitle,
-        setTrackArtist,
-        setTrackProgress,
-        setTrackIsPlaying,
-        setTrackMuted,
+        toggleTrackMuted,
         toPreviousTrack,
         toNextTrack,
+        playTrack,
+        pauseTrack,
       }}
     >
       {children}

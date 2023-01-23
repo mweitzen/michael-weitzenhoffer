@@ -10,6 +10,7 @@ import SpeakerSoundWaveIcon from "@/icons/speaker-sound-wave";
 import SpeakerMuteIcon from "@/icons/speaker-x-mark";
 import prisma from "@/lib/prisma";
 import { useEffect } from "react";
+import MusicNoteIcon from "@/icons/music-note";
 
 const RecordingItem = ({
   track,
@@ -50,8 +51,14 @@ const RecordingItem = ({
 export default function RecordingsPage({
   tracks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { trackIndex, trackIsPlaying, trackMuted, setTracks } =
-    useAudioContext();
+  const {
+    playTrack,
+    pauseTrack,
+    trackIndex,
+    trackIsPlaying,
+    trackMuted,
+    setTracks,
+  } = useAudioContext();
 
   useEffect(() => {
     setTracks(tracks);
@@ -69,9 +76,12 @@ export default function RecordingsPage({
         {tracks.length === 0 ? (
           <>No tracks.</>
         ) : (
-          <div className="py-2 text-center">
-            <p>{playbackText}</p>
-            <p className="text-lg"> {tracks[trackIndex].recordingTitle}</p>
+          <div className="flex items-center gap-4">
+            <MusicNoteIcon className={trackIsPlaying ? "animate-pulse" : ""} />
+            <div className="py-2">
+              <p>{playbackText}</p>
+              <p className="text-lg"> {tracks[trackIndex].recordingTitle}</p>
+            </div>
           </div>
         )}
         <AudioControls />
