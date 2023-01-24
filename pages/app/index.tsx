@@ -19,11 +19,11 @@ export default function AppHomePage() {
           Explore the bottom bar for existing interactions.
         </p>
         <div className="text-center">
-          <p className="py-2 text-lg text-light">Planned features include:</p>
-          <ul className="mx-auto w-full max-w-xs space-y-2 text-start">
+          <p className="mb-4 text-lg text-light">Planned features include:</p>
+          <ul className="mx-auto w-full max-w-xs list-disc space-y-3 text-start">
             <li>See currently playing song</li>
             <li>See upcoming (and previously played) songs</li>
-            <li>Request songs, see your reuqests happen live, and comment</li>
+            <li>Request songs, see your requests happen live, and comment</li>
             <li>Interact with other guests also using the app</li>
             <li>Directly message the performer or send tips virtually</li>
           </ul>

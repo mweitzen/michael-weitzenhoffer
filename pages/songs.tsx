@@ -89,7 +89,7 @@ export default function AllSongsListPage({ songs }: StaticProps) {
   return (
     <PageComponent header="Michael's Repertoire" seoTitle="Repertoire">
       {/* SEARCH / FILTERS */}
-      <div className="sticky -top-0 mb-8 border border-dark-purple backdrop-blur">
+      <div className="sticky -top-0 z-10 mb-8 border border-dark-purple backdrop-blur">
         <div className="relative">
           <MagnifyingGlass className="absolute top-2.5 left-2.5" />
           <input
@@ -113,11 +113,11 @@ export default function AllSongsListPage({ songs }: StaticProps) {
             })}
             handleChange={setArtistFilter}
           />
-          <div className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4 text-light hover:cursor-not-allowed">
+          <div className="flex w-full items-center justify-between border border-dark-purple bg-gray-600 bg-opacity-5 py-2 px-4 text-gray-600 hover:cursor-not-allowed">
             Genre
             <CloseIcon />
           </div>
-          <div className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4 text-light hover:cursor-not-allowed">
+          <div className="flex w-full items-center justify-between border border-dark-purple bg-gray-600 bg-opacity-5 py-2 px-4 text-gray-600 hover:cursor-not-allowed">
             Decade
             <CloseIcon />
           </div>
@@ -141,14 +141,16 @@ export default function AllSongsListPage({ songs }: StaticProps) {
       </div>
 
       {/* SONG LISTINGS */}
-      <div className="mb-4 grid gap-y-2">
-        {filteredSongs.length === 0 ? (
-          <SongEmptyState />
-        ) : (
-          filteredSongs.map((song) => (
-            <SongListItem key={song.id} song={song} />
-          ))
-        )}
+      <div className="min-h-[280px]">
+        <div className="mb-4 grid gap-y-2">
+          {filteredSongs.length === 0 ? (
+            <SongEmptyState />
+          ) : (
+            filteredSongs.map((song) => (
+              <SongListItem key={song.id} song={song} />
+            ))
+          )}
+        </div>
       </div>
     </PageComponent>
   );
