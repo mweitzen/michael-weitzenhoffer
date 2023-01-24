@@ -22,7 +22,7 @@ import { Lato } from "@next/font/google";
  *
  */
 export const font = Lato({
-  weight: ["100", "300"],
+  weight: ["100", "300", "400"],
   subsets: ["latin"],
   variable: "--font-family-sans",
   display: "swap",

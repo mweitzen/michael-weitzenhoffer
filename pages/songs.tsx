@@ -9,6 +9,7 @@ import FilterDropdown from "@/components/dropdown-filter";
 //
 import MagnifyingGlass from "@/icons/magnifying-glass";
 import getChoices from "@/lib/helpers/getChoices";
+import CloseIcon from "@/icons/close";
 
 /*
  *
@@ -47,9 +48,7 @@ export default function AllSongsListPage({ songs }: StaticProps) {
   const [genreFilter, setGenreFilter] = useState<string[]>([]);
   const [decadeFilter, setDecadeFilter] = useState<number[]>([]);
 
-  // const choices = getChoices(songs, "artist.name");
   let filteredSongs = songs;
-
   if (!!songs) {
     if (artistFilter.length !== 0) {
       filteredSongs = songs.filter((song) =>
@@ -105,13 +104,24 @@ export default function AllSongsListPage({ songs }: StaticProps) {
         <div className="grid w-full grid-cols-3">
           <FilterDropdown
             label="Artist"
-            options={[
-              { label: "Bruno Mars", value: "Bruno Mars" },
-              { label: "Tina Turner", value: "Tina Turner" },
-            ]}
+            options={getChoices(songs, "artist", {
+              nestedKey: "name",
+              transformer: (artist) => ({
+                label: artist,
+                value: artist,
+              }),
+            })}
             handleChange={setArtistFilter}
           />
-          <FilterDropdown
+          <div className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4 text-light hover:cursor-not-allowed">
+            Genre
+            <CloseIcon />
+          </div>
+          <div className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4 text-light hover:cursor-not-allowed">
+            Decade
+            <CloseIcon />
+          </div>
+          {/* <FilterDropdown
             label="Genre"
             options={[
               { label: "Pop / Rock", value: Genre.POP_ROCK_RB },
@@ -126,7 +136,7 @@ export default function AllSongsListPage({ songs }: StaticProps) {
               { label: "1990s", value: 1990 },
             ]}
             handleChange={setDecadeFilter}
-          />
+          /> */}
         </div>
       </div>
 

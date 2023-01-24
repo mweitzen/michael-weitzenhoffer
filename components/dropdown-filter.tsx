@@ -33,27 +33,24 @@ const FilterDropdown: React.FC<IFilterDropdown> = ({
           <Transition
             show={open}
             as={Fragment}
-            enter="transition ease-in duration-100"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
             leave="transition ease-in duration-300"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-y-scroll bg-dark-purple py-2 px-4 text-sm ring-black ring-opacity-5 brightness-105 focus:outline-none">
+            <Listbox.Options className="absolute max-h-72 w-[300%] overflow-y-scroll border-8 border-black bg-dark-purple p-2 ring-black ring-opacity-5 brightness-105 focus:outline-none">
               {options.map((option, i) => (
                 <Listbox.Option
                   key={i}
                   value={option.value}
                   className={({ active }) =>
-                    `${active ? "text-pink-600" : ""} relative`
+                    `${active ? "text-purple-700" : ""} relative py-1`
                   }
                 >
                   {({ selected, active }) => (
                     <>
                       <span
                         className={`${
-                          selected ? "font-semibold" : "font-normal"
+                          selected ? "font-semibold" : ""
                         } ml-3 block truncate`}
                       >
                         {option.label}
@@ -62,7 +59,7 @@ const FilterDropdown: React.FC<IFilterDropdown> = ({
                       {selected ? (
                         <span
                           className={`${
-                            active ? "text-white" : "text-indigo-600"
+                            active ? "text-white" : "text-purple-700"
                           } absolute inset-y-0 right-0 flex items-center pr-4`}
                         >
                           <RequestIcon className="h-5 w-5" aria-hidden="true" />

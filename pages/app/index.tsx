@@ -9,52 +9,25 @@ export default function AppHomePage() {
   return (
     <PageComponent header="Interact Live App" seoTitle="App">
       <div className="space-y-8 pb-8">
-        {/* NOW PLAYING */}
-        <div className="space-y-4">
-          <div>
-            <h2 className="text-center text-sm uppercase tracking-widest">
-              Now Playing
-            </h2>
-            <div className="mx-auto my-2 h-[1px] w-16 bg-white" />
-          </div>
-          <div className="space-y-2 bg-white bg-opacity-5 p-4">
-            <span>
-              <p>Song</p>
-              <p className="text-sm">Artist</p>
-              <p className="text-sm text-light">2021</p>
-            </span>
-            <span className="flex items-center justify-between">
-              <p>Requested By:</p>
-              <p>Name</p>
-            </span>
-          </div>
+        <div>
+          <h2 className="text-center text-sm uppercase tracking-widest">
+            Coming Soon
+          </h2>
+          <div className="mx-auto my-2 h-[1px] w-16 bg-white" />
         </div>
-
-        {/* UPCOMING */}
-        <div className="space-y-4">
-          <div>
-            <h2 className="text-center text-sm uppercase tracking-widest">
-              Upcoming Songs
-            </h2>
-            <div className="mx-auto my-2 h-[1px] w-16 bg-white" />
-          </div>
-          <div className="space-y-2 bg-white bg-opacity-5 p-4">
-            <span>
-              <p>Song</p>
-              <p className="text-sm">Artist</p>
-              <p className="text-sm text-light">2001</p>
-            </span>
-            <span className="flex items-center justify-between">
-              <p>Requested By:</p>
-              <p>Name</p>
-            </span>
-          </div>
+        <p className="text-center">
+          Explore the bottom bar for existing interactions.
+        </p>
+        <div className="text-center">
+          <p className="py-2 text-lg text-light">Planned features include:</p>
+          <ul className="mx-auto w-full max-w-xs space-y-2 text-start">
+            <li>See currently playing song</li>
+            <li>See upcoming (and previously played) songs</li>
+            <li>Request songs, see your reuqests happen live, and comment</li>
+            <li>Interact with other guests also using the app</li>
+            <li>Directly message the performer or send tips virtually</li>
+          </ul>
         </div>
-
-        {/* PREVIOUSLY PLAYED SONGS */}
-        <button className="w-full bg-white bg-opacity-5 p-4 text-sm uppercase tracking-widest">
-          See previously played songs
-        </button>
       </div>
 
       <ActionBar
