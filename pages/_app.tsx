@@ -55,15 +55,16 @@ const App = ({
   Component,
   pageProps: { session, ...pageProps },
 }: AppPropsWithLayout) => {
+  const getLayout =
+    Component.getLayout || ((page) => <PublicLayout>{page}</PublicLayout>);
+
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <ThemeContextProvider>
           <DisplayContextProvider>
             <AudioContextProvider>
-              <PublicLayout>
-                <Component {...pageProps} />
-              </PublicLayout>
+              {getLayout(<Component {...pageProps} />)}
             </AudioContextProvider>
           </DisplayContextProvider>
         </ThemeContextProvider>

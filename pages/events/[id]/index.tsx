@@ -2,6 +2,7 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 //
 import { api } from "@/lib/api";
 import prisma from "@/lib/prisma";
+import superjson from "superjson";
 import { formatDateSimple, formatTimeSimple } from "@/lib/formatters/dates";
 //
 import Page from "@/components/page";
@@ -35,9 +36,28 @@ export async function getStaticProps(
     };
   }
 
+  const eventRaw = await prisma.event.findUnique({
+    where: {
+      id: context.params.id,
+    },
+    include: {
+      location: {
+        include: {
+          address: true,
+        },
+      },
+      performingArtist: true,
+      performingGroup: true,
+      stage: true,
+    },
+  });
+
+  const event = JSON.parse(JSON.stringify(eventRaw));
+
   return {
     props: {
       id: context.params.id,
+      event,
     },
   };
 }
