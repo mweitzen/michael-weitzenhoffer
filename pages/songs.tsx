@@ -2,12 +2,13 @@ import { useState } from "react";
 import { InferGetStaticPropsType } from "next";
 //
 import prisma from "@/lib/prisma";
-import { Song, Artist } from "@prisma/client";
+import { Song, Artist, Genre } from "@prisma/client";
 //
 import PageComponent from "@/components/page";
+import FilterDropdown from "@/components/dropdown-filter";
 //
-import ChevronUpDown from "@/icons/chevron-up-down";
 import MagnifyingGlass from "@/icons/magnifying-glass";
+import getChoices from "@/lib/helpers/getChoices";
 
 /*
  *
@@ -42,27 +43,35 @@ export async function getStaticProps() {
  */
 export default function AllSongsListPage({ songs }: StaticProps) {
   const [searchText, setSearchText] = useState("");
-  const [artistFilter, setArtistFilter] = useState<any[]>();
-  const [genreFilter, setGenreFilter] = useState<any[]>();
-  const [decadeFilter, setDecadeFilter] = useState<number>();
+  const [artistFilter, setArtistFilter] = useState<string[]>([]);
+  const [genreFilter, setGenreFilter] = useState<string[]>([]);
+  const [decadeFilter, setDecadeFilter] = useState<number[]>([]);
+
+  // const choices = getChoices(songs, "artist.name");
+  let filteredSongs = songs;
 
   if (!!songs) {
-    if (!!artistFilter) {
-      songs = songs.filter((song) => artistFilter.includes(song.artist.name));
-    }
-    if (!!genreFilter) {
-      songs = songs.filter((song) => genreFilter.includes(song.genre));
-    }
-    if (!!decadeFilter) {
-      songs = songs.filter(
-        (song) =>
-          song.year &&
-          song.year >= decadeFilter &&
-          song.year <= decadeFilter + 9
+    if (artistFilter.length !== 0) {
+      filteredSongs = songs.filter((song) =>
+        artistFilter.includes(song.artist.name)
       );
     }
+    if (genreFilter.length !== 0) {
+      filteredSongs = songs.filter(
+        (song) => song.genre && genreFilter.includes(song.genre)
+      );
+    }
+    if (decadeFilter.length !== 0) {
+      // filteredSongs = songs.filter(
+      //   (song) =>
+      //     song.year &&
+      //     song.year >= decadeFilter &&
+      //     song.year <= decadeFilter + 9
+      // );
+    }
+
     if (!!searchText) {
-      songs = songs.filter(
+      filteredSongs = songs.filter(
         (song) =>
           song.title
             .toLowerCase()
@@ -87,34 +96,48 @@ export default function AllSongsListPage({ songs }: StaticProps) {
           <input
             type="search"
             placeholder="Search by song or artist"
-            className="w-full border border-dark-purple bg-white bg-opacity-5 pl-10 focus:border-dark-purple focus:ring-0 focus:ring-offset-1 focus:ring-offset-purple-900"
+            className="relative z-10 w-full border border-dark-purple bg-white bg-opacity-5 pl-10 focus:border-dark-purple focus:ring-0 focus:ring-offset-1 focus:ring-offset-purple-900"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
         </div>
 
-        <div className="flex w-full">
-          <div className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
-            Artist
-            <ChevronUpDown />
-          </div>
-          <div className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
-            Genre
-            <ChevronUpDown />
-          </div>
-          <div className="flex flex-1 items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
-            Decade
-            <ChevronUpDown />
-          </div>
+        <div className="grid w-full grid-cols-3">
+          <FilterDropdown
+            label="Artist"
+            options={[
+              { label: "Bruno Mars", value: "Bruno Mars" },
+              { label: "Tina Turner", value: "Tina Turner" },
+            ]}
+            handleChange={setArtistFilter}
+          />
+          <FilterDropdown
+            label="Genre"
+            options={[
+              { label: "Pop / Rock", value: Genre.POP_ROCK_RB },
+              { label: "Musical Theater", value: Genre.MUSICAL_THEATER },
+            ]}
+            handleChange={setGenreFilter}
+          />
+          <FilterDropdown
+            label="Decade"
+            options={[
+              { label: "1980s", value: 1980 },
+              { label: "1990s", value: 1990 },
+            ]}
+            handleChange={setDecadeFilter}
+          />
         </div>
       </div>
 
       {/* SONG LISTINGS */}
       <div className="mb-4 grid gap-y-2">
-        {!songs || songs.length === 0 ? (
+        {filteredSongs.length === 0 ? (
           <SongEmptyState />
         ) : (
-          songs.map((song) => <SongListItem key={song.id} song={song} />)
+          filteredSongs.map((song) => (
+            <SongListItem key={song.id} song={song} />
+          ))
         )}
       </div>
     </PageComponent>
@@ -144,19 +167,3 @@ const SongListItem = ({
     <p className="text-sm text-light">{song.year}</p>
   </div>
 );
-
-// const ListboxDemo = () => {
-//   return (
-//     <Listbox as="div" className="relative flex-1">
-//       <Listbox.Button className="flex w-full items-center justify-between border border-dark-purple bg-white bg-opacity-5 py-2 px-4">
-//         Artist
-//         <ChevronUpDown className="pointer-events-none" />
-//       </Listbox.Button>
-//       <Transition>
-//         <Listbox.Options className="absolute mt-1 max-h-60 overflow-auto bg-white bg-opacity-5 py-2 px-4 text-sm ring-1 ring-purple-900">
-//           <Listbox.Option value={"deeznutz"}>Suxk Deez Nuts</Listbox.Option>
-//         </Listbox.Options>
-//       </Transition>
-//     </Listbox>
-//   );
-// };
