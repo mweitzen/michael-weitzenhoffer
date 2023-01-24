@@ -1,4 +1,8 @@
-export function formatDateSimple(date: Date) {
+export function formatDateSimple(date: Date | string) {
+  if (typeof date === "string") {
+    date = new Date(date);
+  }
+
   const fx = Intl.DateTimeFormat("default", {
     weekday: "long",
     day: "numeric",
@@ -8,7 +12,11 @@ export function formatDateSimple(date: Date) {
   return fx.format(date);
 }
 
-export function formatTimeSimple(date: Date) {
+export function formatTimeSimple(date: Date | string) {
+  if (typeof date === "string") {
+    date = new Date(date);
+  }
+
   const fx = Intl.DateTimeFormat("default", {
     timeStyle: "short",
   });
