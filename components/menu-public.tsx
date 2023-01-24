@@ -63,7 +63,7 @@ const PublicMenu = () => {
         {/* MENU */}
         <Transition.Child
           as={Fragment}
-          enter="transition duration-700 ease-out"
+          enter="transition duration-500 ease-out"
           enterFrom="scale-0"
           enterTo="scale-100"
           leave="transition duration-500 ease-in"
