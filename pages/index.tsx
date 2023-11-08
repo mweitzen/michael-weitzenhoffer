@@ -16,7 +16,7 @@ export default function HomePage() {
           className="space-y-1 text-center"
           onClick={() => setShowMenu(true)}
         >
-          <h1 className="text-3xl font-thin">{header}</h1>
+          <h1 className="text-3xl font-extralight">{header}</h1>
           <p className="text-xs font-light uppercase tracking-widest">
             {subheader}
           </p>

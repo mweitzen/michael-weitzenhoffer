@@ -1,12 +1,3 @@
-// *
-// *
-// *
-// *
-// * PRISMA
-// *
-// *
-// *
-// *
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,15 +8,6 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-// *
-// *
-// *
-// *
-// * USER / PERFORMERS
-// *
-// *
-// *
-// *
 model User {
   id            String          @id @default(cuid())
   email         String          @unique
@@ -36,46 +18,35 @@ model User {
   preferredName String?
   lastName      String?
   createdAt     DateTime        @default(now())
-  // auth
   accounts      Account[]
-  sessions      Session[]
-  // musician
-  groups        Group[]
   events        Event[]
-  repertoire    Song[]
-  songlists     SongListSongs[]
   recordings    Recording[]
+  sessions      Session[]
+  songlists     SongListSongs[]
+  groups        Group[]         @relation("GroupToUser")
+  repertoire    Song[]          @relation("SongToUser")
 }
 
 model Group {
   id         String          @id @default(cuid())
   events     Event[]
-  members    User[]
-  repertoire Song[]
   songlists  SongListSongs[]
+  repertoire Song[]          @relation("GroupToSong")
+  members    User[]          @relation("GroupToUser")
 }
 
-// *
-// *
-// *
-// *
-// * AUTH
-// *
-// *
-// *
-// *
 model Account {
   id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -98,26 +69,15 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// *
-// *
-// *
-// *
-// * ADDRESS
-// *
-// *
-// *
-// *
 model Address {
-  id           String     @id @default(cuid())
-  complete     String?
+  id           String  @id @default(cuid())
   streetNumber String
-  street       Street     @relation(fields: [streetId], references: [id])
   streetId     String
   unit         String?
-  zipcode      ZipCode    @relation(fields: [zipCodeId], references: [id])
   zipCodeId    String
-  //
-  locations    Location[]
+  complete     String?
+  street       Street  @relation(fields: [streetId], references: [id])
+  zipcode      ZipCode @relation(fields: [zipCodeId], references: [id])
 }
 
 model ZipCode {
@@ -129,26 +89,26 @@ model ZipCode {
 model Street {
   id             String        @id @default(cuid())
   name           String
-  neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
   neighborhoodId String?
-  city           City          @relation(fields: [cityId], references: [id])
   cityId         String
   Address        Address[]
+  city           City          @relation(fields: [cityId], references: [id])
+  neighborhood   Neighborhood? @relation(fields: [neighborhoodId], references: [id])
 }
 
 model Neighborhood {
   id      String   @id @default(cuid())
   name    String
-  streets Street[]
-  city    City     @relation(fields: [cityId], references: [id])
   cityId  String
+  city    City     @relation(fields: [cityId], references: [id])
+  streets Street[]
 }
 
 model City {
   id            String         @id @default(cuid())
   name          String
-  county        County         @relation(fields: [countyId], references: [id])
   countyId      String
+  county        County         @relation(fields: [countyId], references: [id])
   neighborhoods Neighborhood[]
   streets       Street[]
 }
@@ -156,9 +116,9 @@ model City {
 model County {
   id      String @id @default(cuid())
   name    String
-  state   State  @relation(fields: [stateId], references: [id])
-  cities  City[]
   stateId String
+  cities  City[]
+  state   State  @relation(fields: [stateId], references: [id])
 }
 
 model State {
@@ -168,115 +128,70 @@ model State {
 }
 
 model Location {
-  id         String       @id @default(cuid())
-  name       String
-  active     Boolean      @default(true)
-  website    String?
-  phone      String?
-  address    Address      @relation(fields: [addressId], references: [id])
-  addressId  String
-  insideOf   Location?    @relation(name: "LocationHierarchy", fields: [insideOfId], references: [id])
-  insideOfId String?
-  inside     Location[]   @relation(name: "LocationHierarchy")
-  type       LocationType
-  stages     Stage[]
-  //
-  events     Event[]
-}
-
-enum LocationType {
-  RESTAURANT
-  BAR
-  CLUB
-  THEATER
-  VENUE
-  COMPLEX
+  id      String       @id @default(cuid())
+  name    String
+  type    LocationType
+  active  Boolean      @default(true)
+  phone   String?
+  website String?
+  address String
+  events  Event[]
+  stages  Stage[]
 }
 
 model Stage {
   id         String    @id @default(cuid())
   name       String
   active     Boolean   @default(true)
-  location   Location  @relation(fields: [locationId], references: [id])
   locationId String
-  events     Event[]
   type       StageType
+  events     Event[]
+  location   Location  @relation(fields: [locationId], references: [id])
 }
 
-enum StageType {
-  STAGE
-  ROOM
-}
-
-// *
-// *
-// *
-// *
-// * EVENT RELATED SCHEMA
-// *
-// *
-// *
-// *
 model Event {
-  id                  String    @id @default(cuid())
-  name                String
-  description         String?
-  rsvpLink            String?
-  requiresTicket      Boolean   @default(false)
-  requiresReservation Boolean   @default(false)
-  details             String?
-  timeStart           DateTime?
-  timeEnd             DateTime?
-  location            Location  @relation(fields: [locationId], references: [id])
-  locationId          String
-  stage               Stage?    @relation(fields: [stageId], references: [id])
-  stageId             String?
-  performingArtist    User?     @relation(fields: [performingArtistId], references: [id])
-  performingArtistId  String?
-  performingGroup     Group?    @relation(fields: [performingGroupId], references: [id])
-  performingGroupId   String?
+  id                   String    @id @unique @default(cuid())
+  name                 String
+  description          String?
+  time_start           DateTime? @db.Timestamptz(6)
+  time_end             DateTime? @db.Timestamptz(6)
+  location_id          String
+  performing_artist_id String?
+  performing_group_id  String?
+  stage_id             String?
+  details              String?
+  requires_reservation Boolean   @default(false)
+  requires_ticket      Boolean   @default(false)
+  rsvp_link            String?
+  is_private           Boolean   @default(false)
+  location             Location  @relation(fields: [location_id], references: [id])
+  performing_artist    User?     @relation(fields: [performing_artist_id], references: [id])
+  performing_group     Group?    @relation(fields: [performing_group_id], references: [id])
+  stage                Stage?    @relation(fields: [stage_id], references: [id])
 }
 
-// *
-// *
-// *
-// *
-// * RECORDINGS
-// *
-// *
-// *
-// *
 model Recording {
   id              String @id @default(cuid())
   storageUrl      String @unique
   storageId       String @unique
   storageFileName String
-  user            User   @relation(fields: [userId], references: [id])
   userId          String
   recordingArtist String
   recordingTitle  String
+  user            User   @relation(fields: [userId], references: [id])
 }
 
-// *
-// *
-// *
-// *
-// * REPERTOIRE 
-// *
-// *
-// *
-// *
 model SongListSongs {
   id               String       @id @default(cuid())
-  user             User?        @relation(fields: [userId], references: [id])
   userId           String?
-  group            Group?       @relation(fields: [groupId], references: [id])
   groupId          String?
-  song             Song         @relation(fields: [songId], references: [id])
   songId           String
   modulated        Boolean      @default(false)
   performanceRoot  MusicalRoot?
   performanceNotes String?
+  group            Group?       @relation(fields: [groupId], references: [id])
+  song             Song         @relation(fields: [songId], references: [id])
+  user             User?        @relation(fields: [userId], references: [id])
 }
 
 model Artist {
@@ -288,15 +203,30 @@ model Artist {
 model Song {
   id                String          @id @default(cuid())
   title             String
-  artist            Artist          @relation(fields: [artistId], references: [id])
   artistId          String
   year              Int?
   genre             Genre?
   root              MusicalRoot?
   mode              MusicalMode?
+  artist            Artist          @relation(fields: [artistId], references: [id])
   songlists         SongListSongs[]
-  inUserRepertoire  User[]
-  inGroupRepertoire Group[]
+  inGroupRepertoire Group[]         @relation("GroupToSong")
+  inUserRepertoire  User[]          @relation("SongToUser")
+}
+
+enum LocationType {
+  RESTAURANT
+  BAR
+  CLUB
+  THEATER
+  VENUE
+  COMPLEX
+}
+
+enum StageType {
+  STAGE
+  ROOM
+  AREA
 }
 
 enum MusicalRoot {

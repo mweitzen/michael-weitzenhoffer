@@ -39,10 +39,12 @@ const EventLink = ({ event }: { event: any }) => (
 
       {/* day/time */}
       <div>
-        <p>{formatDateSimple(event.timeStart || new Date())}</p>
+        <p>{formatDateSimple(event.time_start)}</p>
         <p className="text-xs font-light tracking-wide text-light">{`${formatTimeSimple(
-          event.timeStart || new Date()
-        )} - ${formatTimeSimple(event.timeEnd || new Date())}`}</p>
+          event.time_start
+        )} ${
+          event.time_end ? `- ${formatTimeSimple(event.time_end)}` : ""
+        }`}</p>
       </div>
 
       {/* location */}

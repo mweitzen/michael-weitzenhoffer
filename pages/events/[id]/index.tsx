@@ -1,8 +1,6 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 //
-import { api } from "@/lib/api";
 import prisma from "@/lib/prisma";
-import superjson from "superjson";
 import { formatDateSimple, formatTimeSimple } from "@/lib/formatters/dates";
 //
 import Page from "@/components/page";
@@ -41,18 +39,16 @@ export async function getStaticProps(
       id: context.params.id,
     },
     include: {
-      location: {
-        include: {
-          address: true,
-        },
-      },
-      performingArtist: true,
-      performingGroup: true,
+      location: true,
+      performing_artist: true,
+      performing_group: true,
       stage: true,
     },
   });
 
-  const event = JSON.parse(JSON.stringify(eventRaw));
+  const event: typeof eventRaw = JSON.parse(JSON.stringify(eventRaw));
+
+  if (!event) throw new Error("wtf......");
 
   return {
     props: {
@@ -68,39 +64,42 @@ export async function getStaticProps(
  *
  */
 export default function EventDetailPage({ event }: StaticProps) {
-  // const { data: event, isLoading } = api.events.getById.useQuery({
-  //   eventId: props.id,
-  // });
-
   return (
-    <Page header="Event Detail Page" seoTitle="Event Detail">
+    <Page header="Event Details" seoTitle="Event Detail">
       <>
         <div className="space-y-4 px-4 pb-8">
-          <h2 className="text-xl">{event.name}</h2>
+          <h2 className="text-2xl">{event.name}</h2>
           <div>
-            <p className="text-sm">Location:</p>
-            <p>{event.location.name}</p>
-            <p>{event.stage?.name}</p>
-            <p>{event.location.address.complete}</p>
+            <p className="text-sm text-gray-400">Location:</p>
+            <div className="flex flex-col gap-2">
+              <div>
+                <p className="text-xl">{event.location.name}</p>
+                <p>{event.stage?.name}</p>
+              </div>
+              <p className="text-sm text-gray-200">{event.location.address}</p>
+            </div>
           </div>
           <div>
-            <p className="text-sm">Date</p>
+            <p className="text-sm  text-gray-400">Date</p>
             <p>
-              {event.timeStart
-                ? formatDateSimple(event.timeStart)
+              {event.time_start
+                ? formatDateSimple(event.time_start)
                 : "Not scheduled."}
             </p>
           </div>
           <div>
-            <p className="text-sm">Time</p>
+            <p className="text-sm  text-gray-400">Time</p>
             <p>
-              {event.timeStart
-                ? formatTimeSimple(event.timeStart)
+              {event.time_start
+                ? formatTimeSimple(event.time_start)
                 : "No time set."}
-              {event.timeEnd ? ` - ${formatTimeSimple(event.timeEnd)}` : ""}
+              {event.time_end ? ` - ${formatTimeSimple(event.time_end)}` : ""}
             </p>
           </div>
-          <p>{event.description}</p>
+          <div>
+            <p className="text-sm  text-gray-400">Description</p>
+            <p className="text-sm">{event.description}</p>
+          </div>
         </div>
 
         <ActionBar
@@ -120,7 +119,7 @@ export default function EventDetailPage({ event }: StaticProps) {
             {
               type: "link",
               internal: false,
-              href: event.rsvpLink || "",
+              href: event.rsvp_link || "",
               target: "_blank",
               children: (
                 <>

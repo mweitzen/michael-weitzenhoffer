@@ -8,12 +8,12 @@ export const eventRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.event.findMany({
       orderBy: {
-        timeStart: "asc",
+        time_start: "asc",
       },
       include: {
         location: true,
-        performingArtist: true,
-        performingGroup: true,
+        performing_artist: true,
+        performing_group: true,
         stage: true,
       },
     });
@@ -25,17 +25,17 @@ export const eventRouter = createTRPCRouter({
   getUpcoming: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.event.findMany({
       where: {
-        timeStart: {
+        time_start: {
           gte: new Date(),
         },
       },
       orderBy: {
-        timeStart: "asc",
+        time_start: "asc",
       },
       include: {
         location: true,
-        performingArtist: true,
-        performingGroup: true,
+        performing_artist: true,
+        performing_group: true,
         stage: true,
       },
     });
@@ -54,13 +54,9 @@ export const eventRouter = createTRPCRouter({
           id: input.eventId,
         },
         include: {
-          location: {
-            include: {
-              address: true,
-            },
-          },
-          performingArtist: true,
-          performingGroup: true,
+          location: true,
+          performing_artist: true,
+          performing_group: true,
           stage: true,
         },
       });
